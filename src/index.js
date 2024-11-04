@@ -1,13 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { legacy_createStore as createStore } from 'redux';
+import rootReducer from './store/reducers';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const reduxStore = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={reduxStore}>
+        <App />
+    </Provider>
   </React.StrictMode>
 );
 
