@@ -1,24 +1,32 @@
-import logo from './logo.svg';
+import { useEffect } from 'react';
+// import { Routes, Route } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import Modal from 'react-modal';
+import {HomePage} from './pages/Home'
+import {News} from './pages/News'
+import {Contact} from './pages/Contact'
+import Layout from './components/Layout';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      { path: "/", element: <HomePage /> },
+      { path: "/news", element: <News /> },
+      { path: "/contact", element: <Contact /> },
+    ],
+  },
+]);
 
 function App() {
+  useEffect(() => {
+    Modal.setAppElement(document.getElementById('root'));
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <RouterProvider router={router} />
   );
 }
 
