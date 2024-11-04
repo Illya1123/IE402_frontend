@@ -7,6 +7,7 @@ import Modal from 'react-modal';
 import {HomePage} from './pages/Home'
 import {News} from './pages/News'
 import {Contact} from './pages/Contact'
+import SignUpForm from './components/auth/SignUpForm';
 import Layout from './components/Layout';
 
 const router = createBrowserRouter([
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
       { path: "/", element: <HomePage /> },
       { path: "/news", element: <News /> },
       { path: "/contact", element: <Contact /> },
+      { path: "/register", element: <SignUpForm /> },
     ],
   },
 ]);
@@ -26,7 +28,7 @@ function App() {
     Modal.setAppElement(document.getElementById('root'));
   }, []);
   return (
-      <RouterProvider router={router} />
+      <div className='App'><RouterProvider router={router} /></div>
   );
 }
 
