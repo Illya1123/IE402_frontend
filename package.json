@@ -21,7 +21,6 @@
     "react-scripts": "5.0.1",
     "redux": "^5.0.1",
     "sweetalert2": "^11.14.4",
-    "travel": "file:",
     "web-vitals": "^2.1.4",
     "yup": "^1.4.0"
   },
