@@ -22,4 +22,20 @@ const signup = async (param) => {
     }
   };
 
-export { api, signup };
+  const signin = async (param) => {
+    const data = {
+      email: param.email,
+      password: param.password,
+    };
+  
+    try {
+      const response = await axios.post('http://localhost:5000/auth/login/', data);
+      console.log("Signin successful:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Signin failed:", error.response ? error.response.data : error.message);
+      throw error;
+    }
+  };
+
+export { api, signup, signin };
