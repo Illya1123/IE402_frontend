@@ -8,6 +8,7 @@ import {HomePage} from './pages/Home'
 import {News} from './pages/News'
 import {Contact} from './pages/Contact'
 import SignUpForm from './components/auth/SignUpForm';
+import SignInForm from './components/auth/SignInForm';
 import Layout from './components/Layout';
 
 const router = createBrowserRouter([
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
       { path: "/news", element: <News /> },
       { path: "/contact", element: <Contact /> },
       { path: "/register", element: <SignUpForm /> },
+      { path: "/login", element: <SignInForm /> },
     ],
   },
 ]);

@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Swal from "sweetalert2";
-import "./signup.css";
+import "./auth.css";
 import { signup } from "../../api";
 
 const SignupForm = () => {
@@ -51,7 +51,7 @@ const SignupForm = () => {
       } catch (error) {
         Swal.fire({
           title: "Error!",
-          text: "Registration failed. Please try again.",
+          text: error.response?.data?.message,
           icon: "error",
           confirmButtonText: "OK",
         });
