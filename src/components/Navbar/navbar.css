@@ -1,0 +1,171 @@
+:root {
+  --PrimaryColor: hsl(199, 100%, 33%);
+  --SecondaryColor: hsl(187, 85%, 43%);
+  --gradientColor: linear-gradient(to right, hsl(187, 85%, 43%), hsl(199, 100%, 33%));
+  --whiteColor: hsl(0, 0%, 100%);
+  --blackColor: hsl(201, 33%, 16%);
+  --textColor: hsl(240, 4%, 36%);
+  --whiteColorDeam: hsl(0, 0%, 93%);
+  --greyText: rgb(190, 190, 190);
+  --inputColor: rgb(239, 239, 239);
+  --bodyColor: rgb(240, 240, 246);
+  --cardBG: rgb(255, 255, 235);
+}
+
+.header {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--whiteColorDeam);
+  width: 100%;
+  padding: 1rem;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(2, 15, 29, 0.242);
+}
+.header .logo {
+  color: var(--blackColor);
+  font-weight: 600;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+.header .logo .icon {
+  font-size: 25px;
+  color: var(--PrimaryColor);
+  transform: translateY(5px);
+}
+.header .outerNavLists {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  padding: 1rem 2rem;
+  margin: 0;
+  background: var(--whiteColor);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.header .outerNavLists .navItem {
+  margin: 0 1rem;
+}
+.header .outerNavLists .navItem .navLink {
+  text-decoration: none;
+  color: var(--textColor);
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+.header .outerNavLists .navItem .navLink:hover {
+  color: var(--PrimaryColor);
+}
+.header .outerNavLists .btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: var(--gradientColor);
+  color: var(--whiteColor);
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.header .outerNavLists .btn a {
+  text-decoration: none;
+  color: var(--whiteColor);
+}
+.header .outerNavLists .btn:hover {
+  background: var(--SecondaryColor);
+}
+@media screen and (max-width: 1920px) {
+  .header .navBar {
+    position: absolute;
+    background: var(--whiteColorDeam);
+    height: -moz-max-content;
+    height: max-content;
+    width: 80%;
+    border-radius: 1rem;
+    top: -500rem;
+    left: 50%;
+    padding: 1rem;
+    transform: translate(-50%);
+    z-index: 2000;
+    box-shadow: 0 2px 4px rgba(2, 15, 29, 0.9);
+    transition: 0.3s ease-in-out;
+  }
+  .header .navBar.activeNavbar {
+    top: 7rem;
+  }
+  .header .navBar .navLists {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin: auto;
+    padding: 0.5rem 0;
+    gap: 1rem;
+  }
+  .header .navBar .navLists .navItem {
+    display: flex;
+    align-items: center;
+    background-color: var(--cardBG);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    transition: background 0.3s ease;
+  }
+  .header .navBar .navLists .navItem:hover {
+    background-color: var(--cardHover);
+  }
+  .header .navBar .navLists .navItem .navLink {
+    text-decoration: none;
+    color: var(--textColor);
+    font-size: 0.9rem;
+    font-weight: 600;
+    flex-grow: 1;
+  }
+  .header .navBar .navLists .navItem .navLink:hover {
+    color: var(--PrimaryColor);
+  }
+  .header .navBar .navLists .btn {
+    align-self: center;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    background: var(--gradientColor);
+    color: var(--whiteColor);
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 1rem;
+  }
+  .header .navBar .navLists .btn a {
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--whiteColor);
+  }
+  .header .navBar .navLists .btn:hover {
+    background: var(--SecondaryColor);
+  }
+  .header .navBar .closeNavbar {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 1.5rem;
+    color: var(--PrimaryColor);
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  .header .navBar .closeNavbar:hover {
+    color: var(--SecondaryColor);
+  }
+  .header .activeNavbar {
+    top: 7rem;
+  }
+}
+.header .toggleNavbar .icon {
+  font-size: 25px;
+  color: var(--PrimaryColor);
+}
+.header .toggleNavbar:hover.icon {
+  color: var(--SecondaryColor);
+}/*# sourceMappingURL=navbar.css.map */
