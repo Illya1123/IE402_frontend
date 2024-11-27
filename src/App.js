@@ -4,21 +4,19 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Modal from 'react-modal';
-import {HomePage} from './pages/Home'
-import {News} from './pages/News'
-import {Contact} from './pages/Contact'
 import SignUpForm from './components/auth/SignUpForm';
 import SignInForm from './components/auth/SignInForm';
 import Layout from './components/Layout';
+import Home from './pages/Home/Home.jsx';
+
+
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
     children: [
-      { path: "/", element: <HomePage /> },
-      { path: "/news", element: <News /> },
-      { path: "/contact", element: <Contact /> },
+      { path: "/", element: <Home /> },
       { path: "/register", element: <SignUpForm /> },
       { path: "/login", element: <SignInForm /> },
     ],
@@ -30,7 +28,10 @@ function App() {
     Modal.setAppElement(document.getElementById('root'));
   }, []);
   return (
-      <div className='App'><RouterProvider router={router} /></div>
+      <>
+        <div className='App'><RouterProvider router={router} /></div>
+      </>
+      
   );
 }
 
