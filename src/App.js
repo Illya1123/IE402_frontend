@@ -8,18 +8,22 @@ import SignUpForm from './components/auth/SignUpForm';
 import SignInForm from './components/auth/SignInForm';
 import Layout from './components/Layout';
 import Home from './pages/Home/Home.jsx';
-
-
-
+import TouristAccount from './pages/Tourist/TouristAccount.jsx';
+import TouristBooking from './pages/Tourist/TouristBooking.jsx';
+import TouristFavourite from './pages/Tourist/TouristFavourite.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
     children: [
-      { path: "/", element: <Home /> },
+      { path: "/", element: <TouristAccount /> },
       { path: "/register", element: <SignUpForm /> },
       { path: "/login", element: <SignInForm /> },
+      { path: "/home", element: <Home /> },
+      { path: "/tourist-account", element: <TouristAccount /> },
+      { path: "/tourist-booking", element: <TouristBooking /> },
+      { path: "/tourist-favourite", element: <TouristFavourite /> },
     ],
   },
 ]);
