@@ -12,6 +12,7 @@ import TouristAccount from './pages/Tourist/TouristAccount.jsx';
 import TouristBooking from './pages/Tourist/TouristBooking.jsx';
 import TouristFavourite from './pages/Tourist/TouristFavourite.jsx';
 import StaffManager from "./components/Layout/staff.jsx";
+import Detail from "./pages/TourDetail/detail.jsx";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
       { path: "/tourist-account", element: <TouristAccount /> },
       { path: "/tourist-booking", element: <TouristBooking /> },
       { path: "/tourist-favourite", element: <TouristFavourite /> },
+      { path: "/Detail", element: <Detail />}
     ],
   },
   {
