@@ -1,5 +1,6 @@
 import React from "react";
 import './main.css'
+import detail from "../TourDetail/detail";
 
 import {HiOutlineLocationMarker} from 'react-icons/hi'
 import {HiOutlineClipboardCheck} from 'react-icons/hi'
@@ -14,41 +15,41 @@ const Data = [
     {
         id: 1,
         imgSrc: img,
-        destTitle: 'Ba Na Hills',
-        location: 'Da Nang, Viet Nam',
-        grade: 'CULTURAL RELAX',
-        fees: '$700',
-        description: "Ba Na Hills is a stunning mountain resort near Da Nang, Vietnam. It offers a unique blend of natural beauty, French colonial architecture, and thrilling amusement park attractions. Experience four seasons in one day, ride the world's longest cable car, and marvel at the Golden Bridge."
+        destTitle: 'Bà Nà Hill',
+        location: 'Đà Nẵng, Việt Nam',
+        grade: 'DU LỊCH',
+        fees: '1.300.000 vnđ',
+        description: "Bà Nà Hills là khu nghỉ dưỡng trên núi tuyệt đẹp gần Đà Nẵng, Việt Nam. Nơi đây có sự kết hợp độc đáo giữa vẻ đẹp thiên nhiên, kiến ​​trúc thuộc địa Pháp và các điểm tham quan công viên giải trí thú vị. Trải nghiệm bốn mùa trong một ngày, đi cáp treo dài nhất thế giới và chiêm ngưỡng Cầu Vàng."
     },
 
     {
         id: 2,
         imgSrc: img1,
-        destTitle: 'Ha Long Bay',
-        location: 'Ha Noi, Viet Nam',
-        grade: 'CULTURAL RELAX',
-        fees: '$700',
-        description: "Ha Long Bay is a UNESCO World Heritage Site in Vietnam, renowned for its thousands of limestone karsts and isles in various shapes and sizes. Explore hidden lagoons, pristine beaches, and vibrant fishing villages by boat or kayak."
+        destTitle: 'Vịnh Hạ Long',
+        location: 'Hà Nội, Việt Nam',
+        grade: 'DI SẢN',
+        fees: '1.400.000 vnđ',
+        description: "Vịnh Hạ Long là Di sản Thế giới được UNESCO công nhận tại Việt Nam, nổi tiếng với hàng ngàn núi đá vôi và đảo có nhiều hình dạng và kích thước khác nhau. Khám phá các đầm phá ẩn giấu, bãi biển nguyên sơ và làng chài sôi động bằng thuyền hoặc thuyền kayak."
     },
 
     {
         id: 3,
         imgSrc: img2,
-        destTitle: 'Phu Yen',
-        location: 'Phu Yen, Viet Nam',
-        grade: 'CULTURAL RELAX',
-        fees: '$700',
-        description: "Phu Yen, a hidden gem in Central Vietnam, boasts pristine beaches, dramatic cliffs, and ancient lighthouses. Explore the unique rock formations of Gành Đá Đĩa, relax on the serene Bãi Xép, and witness the stunning sunset at Mũi Điện. Immerse yourself in the local culture and savor fresh seafood delicacies."
+        destTitle: 'Phú Yên',
+        location: 'Phú Yên, Việt Nam',
+        grade: 'DU LỊCH',
+        fees: '600.000 vnđ',
+        description: "Phú Yên, viên ngọc ẩn giấu ở miền Trung Việt Nam, tự hào có những bãi biển nguyên sơ, vách đá ngoạn mục và ngọn hải đăng cổ kính. Khám phá những khối đá độc đáo của Gành Đá Đĩa, thư giãn trên Bãi Xép thanh bình và ngắm hoàng hôn tuyệt đẹp ở Mũi Điện. Đắm mình vào văn hóa địa phương và thưởng thức những món hải sản tươi ngon."
     },
 
     {
         id: 4,
         imgSrc: img3,
-        destTitle: 'Da Lat',
-        location: 'Lam Dong, Viet Nam',
-        grade: 'CULTURAL RELAX',
-        fees: '$700',
-        description: "Da Lat, a charming hill station in Vietnam, offers a cool, refreshing climate, stunning natural beauty, and a unique blend of French colonial architecture and indigenous culture. Explore picturesque valleys, vibrant flower gardens, and serene lakes. Indulge in delicious local cuisine and experience the city's romantic atmosphere."
+        destTitle: 'Đà Lạt',
+        location: 'Lâm Đồng, Việt Nam',
+        grade: 'THƯ GIÃN',
+        fees: '1.500.000 vnđ',
+        description: "Đà Lạt, một thị trấn đồi quyến rũ ở Việt Nam, có khí hậu mát mẻ, trong lành, vẻ đẹp thiên nhiên tuyệt đẹp và sự kết hợp độc đáo giữa kiến ​​trúc thuộc địa Pháp và văn hóa bản địa. Khám phá những thung lũng đẹp như tranh vẽ, những vườn hoa rực rỡ và những hồ nước thanh bình. Thưởng thức ẩm thực địa phương ngon tuyệt và trải nghiệm bầu không khí lãng mạn của thành phố."
     },
 
 ]
@@ -59,7 +60,7 @@ const Main = () => {
 
             <div className="secTitle">
                 <h3 className="title">
-                    Most visited destrinations
+                    Địa điểm thu hút khách du lịch nhất
                 </h3>
             </div>
 
@@ -93,7 +94,7 @@ const Main = () => {
                                     </div>
 
                                     <button className="btn flex">
-                                        DETAILS <HiOutlineClipboardCheck className="icon"/>
+                                        <a href="/detail">CHI TIẾT</a> <HiOutlineClipboardCheck className="icon"/>
                                     </button>
                                 </div>
                             </div>

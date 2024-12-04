@@ -8,6 +8,7 @@ import SignUpForm from './components/auth/SignUpForm';
 import SignInForm from './components/auth/SignInForm';
 import Layout from './components/Layout';
 import Home from './pages/Home/Home.jsx';
+import Detail from './components/TourDetail/detail.jsx';
 
 
 
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
       { path: "/", element: <Home /> },
       { path: "/register", element: <SignUpForm /> },
       { path: "/login", element: <SignInForm /> },
+      { path: "/detail", element: <Detail />}
     ],
   },
 ]);

@@ -30,73 +30,69 @@ const Navbar = () => {
                 <ul className="outerNavLists flex">
 
                         <li className="navItem">
-                            <a href="#" className="navLink">Home</a>
+                            <a href="#" className="navLink">Trang chủ</a>
                         </li>
 
                         <li className="navItem">
-                            <a href="#" className="navLink">Packages</a>
+                            <a href="#" className="navLink">Hoạt động</a>
                         </li>
 
                         <li className="navItem">
-                            <a href="#" className="navLink">Shop</a>
+                            <a href="#" className="navLink">Dịch vụ</a>
                         </li>
 
                         <li className="navItem">
-                            <a href="#" className="navLink">About</a>
+                            <a href="#" className="navLink">Thông tin</a>
                         </li>
 
                         <li className="navItem">
-                            <a href="#" className="navLink">Pages</a>
+                            <a href="#" className="navLink">Trang</a>
                         </li>
 
                         <li className="navItem">
-                            <a href="#" className="navLink">News</a>
+                            <a href="#" className="navLink">Tin tức</a>
                         </li>
 
                         <li className="navItem">
-                            <a href="#" className="navLink">Contact</a>
+                            <a href="#" className="navLink">Liên lạc</a>
                         </li>
-
-                        <button className="btn">
-                            <a href="#">BOOK NOW</a>
-                        </button>
                     </ul>
 
                 <div className={active}>
                     <ul className="navLists flex">
 
                         <li className="navItem">
-                            <a href="#" className="navLink">Home</a>
+                            <a href="#" className="navLink">Bảo hiểm du lịch</a>
                         </li>
 
                         <li className="navItem">
-                            <a href="#" className="navLink">Packages</a>
+                            <a href="#" className="navLink">Sân chơi</a>
                         </li>
 
                         <li className="navItem">
-                            <a href="#" className="navLink">Shop</a>
+                            <a href="#" className="navLink">Làm đẹp & Spa</a>
                         </li>
 
                         <li className="navItem">
-                            <a href="#" className="navLink">About</a>
+                            <a href="#" className="navLink">Du thuyền</a>
                         </li>
 
                         <li className="navItem">
-                            <a href="#" className="navLink">Pages</a>
+                            <a href="#" className="navLink">Wi bu</a>
                         </li>
 
                         <li className="navItem">
-                            <a href="#" className="navLink">News</a>
+                            <a href="#" className="navLink">Phiếu quà tặng</a>
                         </li>
 
                         <li className="navItem">
-                            <a href="#" className="navLink">Contact</a>
+                            <a href="#" className="navLink">Khuyến mãi</a>
                         </li>
+                    </ul>                    
 
-                        <button className="btn">
-                            <a href="#">BOOK NOW</a>
+                    <button className="btn">
+                            <a href="#">Đặt vé ngay</a>
                         </button>
-                    </ul>
 
                     <div onClick={removeNavbar} className="closeNavbar">
                     <AiFillCloseCircle className="icon"/>

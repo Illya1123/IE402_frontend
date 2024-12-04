@@ -6,7 +6,7 @@ import Footer from '../Footer/Footer.jsx'
 const Layout = () => {
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       <Outlet />
       <Footer/>
       <df-messenger

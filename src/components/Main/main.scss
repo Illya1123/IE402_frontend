@@ -28,7 +28,7 @@
                 content: '';
                 background: var(--SecondaryColor);
                 height: 5px;
-                width: 120px;
+                width: 240px;
                 right: 0;
                 bottom: 5px;
                 z-index: -1;
@@ -39,7 +39,7 @@
     .secContent {
         justify-content: center;
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 1.5rem;
 
         .singleDestination {
@@ -114,7 +114,7 @@
 
                     .grade {
                         color: var(--textColor);
-                        max-width: 100px;
+                        max-width: auto;
                         line-height: 20px;
                         display: flex;
                         align-items: center;
@@ -139,6 +139,7 @@
                 .desc {
                     font-size: 13.5px;
                     color: var(--textColor);
+                    text-align: left;
                     font-weight: 500;
                 }
 

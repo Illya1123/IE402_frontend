@@ -21,11 +21,11 @@ const Home = () => {
                 <div className="textDiv">
 
                     <span className="smallText">
-                        Our Packages
+                        Các dịch vụ
                     </span>
 
                     <h1 className="homeTitle">
-                        Search your Holiday
+                        Tìm kiếm hành trình của bạn ngay
                     </h1>
 
                 </div>
@@ -34,17 +34,17 @@ const Home = () => {
 
                     <div className="destinationInput">
                         <label htmlFor="city">
-                            Search your destination:
+                            Tìm kiếm chuyến du lịch:
                             </label>
                         <div className="input flex">
-                            <input type="text" placeholder="Enter name here..."/>
+                            <input type="text" placeholder="Nhập địa điểm..."/>
                             <GrLocation className="icon"/>
                         </div>
                     </div>
 
                     <div className="dateInput">
                         <label htmlFor="date">
-                            Select your date:
+                            Chọn ngày khởi hành:
                             </label>
                         <div className="input flex">
                             <input type="date" />
@@ -54,18 +54,18 @@ const Home = () => {
                     <div className="priceInput">
                         <div className="label_total flex">
                             <label htmlFor="price">
-                                Max price:
+                                Ngân sách:
                                 </label>
-                            <h3 className="total">${price}</h3>
+                            <h3 className="total">₫{price}</h3>
                         </div>
                         <div className="input flex">
-                            <input type="range" max="5000" min="1000" onChange={(e)=> setPrice(e.target.value)} />
+                            <input type="range" max="2000000" min="800000" onChange={(e)=> setPrice(e.target.value)} />
                         </div>
                     </div>
 
                     <div className="searchOptions flex">
                         <HiFilter className="icon"/>
-                        <span>MORE FILTERS</span>
+                        <span>KHÁM PHÁ</span>
                     </div>
                 </div>
 

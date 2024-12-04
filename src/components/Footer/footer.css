@@ -129,6 +129,7 @@
   margin-right: 10px;
 }
 .footer .secContent .footerCard .footerParagraph {
+  text-align: left;
   font-size: 13px;
   color: var(--textColor);
 }
