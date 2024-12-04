@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 // import { Routes, Route } from 'react-router-dom';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -26,17 +26,22 @@ const router = createBrowserRouter([
       { path: "/tourist-favourite", element: <TouristFavourite /> },
     ],
   },
+  {
+    path: "/staff/*",
+    element: <StaffManager />,
+  },
 ]);
 
 function App() {
   useEffect(() => {
-    Modal.setAppElement(document.getElementById('root'));
+    Modal.setAppElement(document.getElementById("root"));
   }, []);
   return (
-      <>
-        <div className='App'><RouterProvider router={router} /></div>
-      </>
-      
+    <>
+      <div className="App">
+        <RouterProvider router={router} />
+      </div>
+    </>
   );
 }
 
