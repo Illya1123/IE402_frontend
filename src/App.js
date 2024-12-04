@@ -1,16 +1,14 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 // import { Routes, Route } from 'react-router-dom';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
-import Modal from 'react-modal';
-import SignUpForm from './components/auth/SignUpForm';
-import SignInForm from './components/auth/SignInForm';
-import Layout from './components/Layout';
-import Home from './pages/Home/Home.jsx';
-
-
-
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import Modal from "react-modal";
+import SignUpForm from "./components/auth/SignUpForm";
+import SignInForm from "./components/auth/SignInForm";
+import Layout from "./components/Layout";
+import StaffManager from "./components/Layout/staff.jsx";
+import Home from "./pages/Home/Home.jsx";
 
 const router = createBrowserRouter([
   {
@@ -22,17 +20,22 @@ const router = createBrowserRouter([
       { path: "/login", element: <SignInForm /> },
     ],
   },
+  {
+    path: "/staff/*",
+    element: <StaffManager />,
+  },
 ]);
 
 function App() {
   useEffect(() => {
-    Modal.setAppElement(document.getElementById('root'));
+    Modal.setAppElement(document.getElementById("root"));
   }, []);
   return (
-      <>
-        <div className='App'><RouterProvider router={router} /></div>
-      </>
-      
+    <>
+      <div className="App">
+        <RouterProvider router={router} />
+      </div>
+    </>
   );
 }
 
