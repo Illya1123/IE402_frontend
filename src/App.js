@@ -11,6 +11,7 @@ import Home from './pages/Home/Home.jsx';
 import TouristAccount from './pages/Tourist/TouristAccount.jsx';
 import TouristBooking from './pages/Tourist/TouristBooking.jsx';
 import TouristFavourite from './pages/Tourist/TouristFavourite.jsx';
+import StaffManager from "./components/Layout/staff.jsx";
 
 const router = createBrowserRouter([
   {

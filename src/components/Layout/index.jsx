@@ -7,6 +7,7 @@ const Layout = () => {
   return (
     <div>
       <Navbar />
+      <div style={{paddingTop: "100px"}}></div>
       <Outlet />
       <Footer/>
       <df-messenger
