@@ -95,13 +95,13 @@
     top: 7rem;
   }
   .header .navBar .navLists {
-    display: flex;
-    flex-direction: column;
+    display: grid;
     justify-content: center;
     width: 100%;
     margin: auto;
     padding: 0.5rem 0;
     gap: 1rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
   .header .navBar .navLists .navItem {
     display: flex;
@@ -124,26 +124,24 @@
   .header .navBar .navLists .navItem .navLink:hover {
     color: var(--PrimaryColor);
   }
-  .header .navBar .navLists .btn {
+  .header .navBar .btn {
     align-self: center;
-    padding: 0.75rem 1.5rem;
+    width: 100%;
     border: none;
     background: var(--gradientColor);
     color: var(--whiteColor);
     font-weight: bold;
     text-transform: uppercase;
     text-align: center;
-    border-radius: 5px;
+    border-radius: 12px;
     cursor: pointer;
-    transition: background 0.3s ease;
-    margin-top: 1rem;
   }
-  .header .navBar .navLists .btn a {
+  .header .navBar .btn a {
     text-decoration: none;
     font-weight: 600;
     color: var(--whiteColor);
   }
-  .header .navBar .navLists .btn:hover {
+  .header .navBar .btn:hover {
     background: var(--SecondaryColor);
   }
   .header .navBar .closeNavbar {

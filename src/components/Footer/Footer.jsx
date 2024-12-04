@@ -22,14 +22,14 @@ const Footer = () => {
             <div className="secContent container">
                 <div className="contactDiv flex">
                     <div className="text">
-                        <small>KEEP IN TOUCH</small>
-                        <h2>Travel with us</h2>
+                        <small>CHÀO MỪNG QUÝ KHÁCH</small>
+                        <h2>Đồng hành cùng chúng tôi</h2>
                     </div>
 
                     <div className="inputDiv flex">
-                        <input type="text" placeholder="Enter Email Address" />
+                        <input type="text" placeholder="Nhập Email" />
                         <button className="btn flex" type="submit">
-                            SEND
+                            GỬI
                             <FiSend className="icon"/>
                         </button>
                     </div>
@@ -45,7 +45,7 @@ const Footer = () => {
                         </div>
 
                         <div className="footerParagraph">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                        Travel - Cánh cửa mở ra thế giới kỳ diệu. Với giao diện trực quan, thân thiện, bạn dễ dàng tìm kiếm và đặt vé máy bay, khách sạn, tour du lịch chỉ với vài cú click chuột. Hệ thống so sánh giá thông minh giúp bạn tìm được những ưu đãi hấp dẫn nhất. Đặc biệt, đội ngũ hỗ trợ khách hàng 24/7 luôn sẵn sàng giải đáp mọi thắc mắc, đảm bảo chuyến đi của bạn luôn suôn sẻ và trọn vẹn.
                         </div>
 
                         <div className="footerSocials flex">
@@ -59,38 +59,38 @@ const Footer = () => {
                     <div className="footerLinks grid">
                         <div className="linkGroup">
                             <span className="groupTitle">
-                                OUR AGENCY
+                                VỀ TRAVEL
                             </span>
 
                             <li className="footerList flex">
                                 <FiChevronRight className="icon"/>
-                    			Services
+                    			Các dịch vụ
                             </li>
 
                             <li className="footerList flex">
                                 <FiChevronRight className="icon"/>
-                    			Insurance
+                    			Bảo hiểm
                             </li>
 
                             <li className="footerList flex">
                                 <FiChevronRight className="icon"/>
-                    			Agency
+                    			Hãng hàng
                             </li>
 
                             <li className="footerList flex">
                                 <FiChevronRight className="icon"/>
-                    			Tourism
+                    			Du lịch
                             </li>
 
                             <li className="footerList flex">
                                 <FiChevronRight className="icon"/>
-                    			Payment
+                    			Chi phí
                             </li>
                         </div>
 
                         <div className="linkGroup">
                             <span className="groupTitle">
-                                PARTNERS
+                                CÁC ĐỐI TÁC
                             </span>
 
                             <li className="footerList flex">
@@ -110,7 +110,7 @@ const Footer = () => {
 
                             <li className="footerList flex">
                                 <FiChevronRight className="icon"/>
-                    			Trivago
+                    			Traveloka
                             </li>
 
                             <li className="footerList flex">
@@ -121,38 +121,38 @@ const Footer = () => {
 
                         <div className="linkGroup">
                             <span className="groupTitle">
-                                LAST MINUTE
+                                MỚI NHẤT
                             </span>
 
                             <li className="footerList flex">
                                 <FiChevronRight className="icon"/>
-                    			London
+                    			Đà Lạt
                             </li>
 
                             <li className="footerList flex">
                                 <FiChevronRight className="icon"/>
-                    			California
+                    			Bến Tre
                             </li>
 
                             <li className="footerList flex">
                                 <FiChevronRight className="icon"/>
-                    			Indonesia
+                    			Thủ đô Hà Nội
                             </li>
 
                             <li className="footerList flex">
                                 <FiChevronRight className="icon"/>
-                    			Europe
+                    			Vũng Sình
                             </li>
 
                             <li className="footerList flex">
                                 <FiChevronRight className="icon"/>
-                    			Oceania
+                    			Mũi Né
                             </li>
                         </div>
                     </div>
 
                     <div className="footerDiv flex">
-                        <small>BEST TRAVEL WEBSITE THEME</small>
+                        <small>TRANG WEB ĐỈNK NHẤT MỌI THỜI ĐẠI</small>
                         <small>COPYRIGHTS RESERVED - Rei</small>
                     </div>
                  </div>
