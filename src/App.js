@@ -13,20 +13,28 @@ import TouristBooking from './pages/Tourist/TouristBooking.jsx';
 import TouristFavourite from './pages/Tourist/TouristFavourite.jsx';
 import StaffManager from "./components/Layout/staff.jsx";
 import Detail from "./pages/TourDetail/detail.jsx";
+import AdminDashboard from './pages/AdminPage/Dashboard/AdminDashboard.jsx'
+import AdminManageAccounts from './pages/AdminPage/ManageAccounts/AdminManageAccounts.jsx';
+import AdminManageTours from './pages/AdminPage/ManageTours/AdminManageTours.jsx';
+import AdminManageBookings from './pages/AdminPage/ManageBooking/AdminManageBookings.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
     children: [
-      { path: "/", element: <TouristAccount /> },
+      { path: "/", element: <Home /> },
       { path: "/register", element: <SignUpForm /> },
       { path: "/login", element: <SignInForm /> },
       { path: "/home", element: <Home /> },
       { path: "/tourist-account", element: <TouristAccount /> },
       { path: "/tourist-booking", element: <TouristBooking /> },
       { path: "/tourist-favourite", element: <TouristFavourite /> },
-      { path: "/Detail", element: <Detail />}
+      { path: "/Detail", element: <Detail />},
+      { path: "/admin-dashboard", element: <AdminDashboard />},
+      { path: "/admin-manage-accounts", element: <AdminManageAccounts />},
+      { path: "/admin-manage-tours", element: <AdminManageTours />},
+      { path: "/admin-manage-bookings", element: <AdminManageBookings />}
     ],
   },
   {

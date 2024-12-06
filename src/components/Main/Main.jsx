@@ -1,7 +1,7 @@
 import React from "react";
 import './main.css'
 import detail from "../../pages/TourDetail/detail";
-
+import { useNavigate } from "react-router-dom";
 import {HiOutlineLocationMarker} from 'react-icons/hi'
 import {HiOutlineClipboardCheck} from 'react-icons/hi'
 
@@ -55,6 +55,7 @@ const Data = [
 ]
 
 const Main = () => {
+    const navigate = useNavigate();
     return (
         <section className="main container section">
 
@@ -93,8 +94,8 @@ const Main = () => {
                                         <p>{description}</p>
                                     </div>
 
-                                    <button className="btn flex">
-                                        <a href="/detail">CHI TIẾT</a> <HiOutlineClipboardCheck className="icon"/>
+                                    <button className="btn flex" onClick={() => navigate("/detail")}>
+                                        <span>CHI TIẾT</span> <HiOutlineClipboardCheck className="icon"/>
                                     </button>
                                 </div>
                             </div>
