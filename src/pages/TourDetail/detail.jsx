@@ -34,6 +34,9 @@ const Detail = () => {
                             <TbMoneybag className="icon" />
                             <h4>1.300.000 ₫</h4>
                         </div>
+                        <button className="btn">
+                            <a href="">ĐẶT NGAY</a>
+                        </button>
                     </div>
                     <div className="desc">
                         <p>
@@ -64,9 +67,6 @@ const Detail = () => {
                 <div className="aboutTour">
                     <p>Ai đến Đà Nẵng mà không đi du lịch Bà Nà Hills thì thật là thiếu sót đấy! Bạn hãy cầm trên tay vé Bà Nà Hills và dành nguyên 1 ngày để khám phá điểm đến ấn tượng này nhé. Với vé Bà Nà Hills này, bạn sẽ có cơ hội chiêm ngưỡng quang cảnh hùng vĩ xung quanh khi hệ thống cáp treo dần đưa bạn lên đỉnh núi.
                         Lên đến Bà Nà Hills, bạn tha hồ bung lựa với hơn 105 trò chơi ở công viên giải trí Fantasy Park mà không mất phí. Chưa hết, khu làng Pháp là địa điểm vô cùng lý tưởng để sống ảo. À mà nhớ hãy dành thời gian ngắm cảnh trên Cầu Vàng, nơi được tạp chí TIME bình chọn vào năm 2018 là 1 trong 100 địa điểm tuyệt vời nhất trên thế giới. Bạn đã sẵn sàng bắt đầu chuyến đi du lịch Bà Nà Hills hứa hẹn nhiều bất ngờ chưa?</p>
-                        <button className="btn">
-                            <a href="">ĐẶT NGAY</a>
-                        </button>
                 </div>
             </div>
         </section>
