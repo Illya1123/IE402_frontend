@@ -22,6 +22,7 @@ const AdminPanel = () => {
                         { key: '../admin-dashboard', icon: <Home />, label: 'Bảng Điều Khiển' },
                         { key: '../admin-manage-accounts', icon: <Layers3 />, label: 'Quản Lý Tài Khoản'},
                         { key: '../admin-manage-tours', icon: <Plane />, label: 'Quản Lý Tour' },
+                        { key: '../admin-manage-destinates', icon: <Plane />, label: 'Quản Lý Destinate' },
                         { key: '../admin-manage-bookings', icon: <TicketCheck />, label: 'Quản Lý Đặt Vé' }
                     ].map(item => (
                         <li 
