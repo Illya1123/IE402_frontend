@@ -3,7 +3,7 @@ import AdminPanel from '../AdminPanel';
 import AdminTourForm from "./AdminTourForm";
 import AdminTourList from "./AdminTourList";
 
-const AdminManageTours = () => {
+const AdminManageDestinates = () => {
     const [tours, setTours] = useState([]);
     const [tourToEdit, setTourToEdit] = useState(null);
 
@@ -54,4 +54,4 @@ const AdminManageTours = () => {
     );
 };
 
-export default AdminManageTours;
+export default AdminManageDestinates;
