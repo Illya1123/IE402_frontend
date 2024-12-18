@@ -19,15 +19,13 @@ const AdminManageAccounts = () => {
           },
         });
 
-        // Log API response for debugging
         console.log("API Response:", response.data);
 
-        // Extract rows safely
-        const users = response.data?.data?.rows || []; // Default to an empty array if not found
+        const users = response.data?.data?.rows || [];
         setAccounts(users);
       } catch (error) {
         console.error("Error fetching accounts:", error);
-        setAccounts([]); // Default to an empty array in case of an error
+        setAccounts([]);
       }
     };
 
@@ -36,17 +34,15 @@ const AdminManageAccounts = () => {
 
   const addOrUpdateAccount = (account) => {
     if (accountToEdit) {
-      // Update an existing account
       setAccounts(
         accounts.map((acc) =>
           acc.id === accountToEdit.id ? { ...acc, ...account } : acc
         )
       );
     } else {
-      // Add a new account
       setAccounts([
         ...accounts,
-        { ...account, id: Math.random().toString(36).substr(2, 9) }, // Generate random ID for new account
+        { ...account, id: Math.random().toString(36).substr(2, 9) },
       ]);
     }
     setAccountToEdit(null);

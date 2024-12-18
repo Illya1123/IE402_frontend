@@ -5,7 +5,6 @@ const AdminAccountList = ({ accounts, onEdit, onDelete }) => {
 
     console.log("Accounts data:", accounts);
 
-    // Mapping userType to a human-readable role
     const mapUserTypeToRole = (userType) => {
         switch (userType) {
             case "1":
@@ -19,7 +18,6 @@ const AdminAccountList = ({ accounts, onEdit, onDelete }) => {
         }
     };
 
-    // Filter accounts based on search input
     const filteredAccounts = accounts.filter(
         (acc) =>
             acc.firstName.toLowerCase().includes(search.toLowerCase()) ||
