@@ -9,7 +9,6 @@ const Navbar = () => {
   const [active, setActive] = useState("navBar");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [accountName, setAccountName] = useState("");
-  const [showLogout, setShowLogout] = useState(false);
   const [userType, setUserType] = useState(null);
   const navigate = useNavigate();
 
@@ -41,12 +40,18 @@ const Navbar = () => {
     localStorage.removeItem("account_name");
     setIsLoggedIn(false);
     setAccountName("");
-    setShowLogout(false);
+    setUserType(null);
     navigate("/");
   };
 
-  const toggleLogout = () => {
-    setShowLogout(!showLogout);
+  const handleUserRedirect = () => {
+    if (userType === "1") {
+      navigate("/tourist-account");
+    } else if (userType === "2") {
+      navigate("/staff/");
+    } else if (userType === "0") {
+      navigate("/admin-dashboard");
+    }
   };
 
   return (
@@ -131,8 +136,24 @@ const Navbar = () => {
             ) : (
               <>
                 <li className="navItem">
-                  <span className="navLink" onClick={toggleLogout}>
+                  <span
+                    className="navLink"
+                    style={{ cursor: "pointer" }}
+                    onClick={handleUserRedirect}
+                  >
                     Chào, {accountName}
+                  </span>
+                </li>
+                <li className="navItem">
+                  <span
+                    className="navLink"
+                    style={{
+                      cursor: "pointer",
+                      color: "red",
+                    }}
+                    onClick={handleLogout}
+                  >
+                    Đăng xuất
                   </span>
                 </li>
               </>
@@ -192,131 +213,6 @@ const Navbar = () => {
           </div>
         </header>
       </section>
-
-      {showLogout && (
-        <>
-          <ul
-            style={{
-              listStyle: "none",
-              margin: 0,
-              display: "flex",
-              flexDirection: "column",
-              gap: "10px",
-              position: "fixed",
-              top: "70px", 
-              right: "33rem",
-              zIndex: 1001, 
-              backgroundColor: "white", 
-              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-              borderRadius: "8px",
-              padding: "10px",
-            }}
-          >
-            {userType === "1" && (
-              <li
-                style={{
-                  backgroundColor: "white",
-                  padding: "10px",
-                  borderRadius: "5px",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                }}
-              >
-                <button
-                  className="logoutButton"
-                  onClick={() => navigate("/tourist-account")}
-                  style={{
-                    backgroundColor: "#f44336",
-                    color: "white",
-                    padding: "8px 16px",
-                    borderRadius: "5px",
-                    cursor: "pointer",
-                    textDecoration: "none",
-                    width: "100%",
-                  }}
-                >
-                  Đi đến trang User
-                </button>
-              </li>
-            )}
-            {userType === "2" && (
-              <li
-                style={{
-                  backgroundColor: "white",
-                  padding: "10px",
-                  borderRadius: "5px",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                }}
-              >
-                <button
-                  className="logoutButton"
-                  onClick={() => navigate("/staff/")}
-                  style={{
-                    backgroundColor: "#f44336",
-                    color: "white",
-                    padding: "8px 16px",
-                    borderRadius: "5px",
-                    cursor: "pointer",
-                    textDecoration: "none",
-                    width: "100%",
-                  }}
-                >
-                  Đi đến trang Tour Guide
-                </button>
-              </li>
-            )}
-            {userType === "0" && (
-              <li
-                style={{
-                  backgroundColor: "white",
-                  padding: "10px",
-                  borderRadius: "5px",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                }}
-              >
-                <button
-                  className="logoutButton"
-                  onClick={() => navigate("/admin-dashboard")}
-                  style={{
-                    backgroundColor: "#f44336",
-                    color: "white",
-                    padding: "8px 16px",
-                    borderRadius: "5px",
-                    cursor: "pointer",
-                    textDecoration: "none",
-                    width: "100%",
-                  }}
-                >
-                  Đi đến trang Admin
-                </button>
-              </li>
-            )}
-            <li
-              style={{
-                backgroundColor: "white",
-                padding: "10px",
-                borderRadius: "5px",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-              }}
-            >
-              <button
-                className="logoutButton"
-                onClick={handleLogout}
-                style={{
-                  backgroundColor: "#f44336",
-                  color: "white",
-                  padding: "8px 16px",
-                  borderRadius: "5px",
-                  cursor: "pointer",
-                  textDecoration: "none",
-                  width: "100%",
-                }}
-              >
-                Đăng xuất
-              </button>
-            </li>
-          </ul>
-        </>
-      )}
     </>
   );
 };
