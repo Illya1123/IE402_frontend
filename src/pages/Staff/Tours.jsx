@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import ReactPaginate from "react-paginate";
 
 // Import APIs Here
-import { toursData } from "../../api/staff";
+import { getAllTours } from "../../api/staff";
 
 // Import Components Here
 import Header from "../../components/Header/Header";
@@ -48,10 +48,10 @@ const Tours = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // const existedTours = await toursData(); // Uncomment this when finish backend
-        const existedTours = toursData; // Delete this when finish backend
+        const existedTours = await getAllTours(); // Uncomment this when finish backend
+        // const existedTours = toursData; // Delete this when finish backend
         if (existedTours.length !== 0) {
-          setTourData(existedTours);
+          setTourData(existedTours.data);
         } else {
           setTourData([]);
           console.log("No Data Fetched");

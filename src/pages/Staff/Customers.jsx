@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import ReactPaginate from "react-paginate";
 
 // Import APIs Here
-import { customersData } from "../../api/staff";
+import { getAllCustomers } from "../../api/staff";
 
 // Import Components Here
 import Header from "../../components/Header/Header";
@@ -41,10 +41,10 @@ const Customers = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // const existedTours = await customersData(); // Uncomment this when finish backend
-        const existedTours = customersData; // Delete this when finish backend
-        if (existedTours.length !== 0) {
-          setcustomerData(existedTours);
+        const existedCustomers = await getAllCustomers(); // Uncomment this when finish backend
+        // const existedCustomers = customersData; // Delete this when finish backend
+        if (existedCustomers.length !== 0) {
+          setcustomerData(existedCustomers.data);
         } else {
           setcustomerData([]);
           console.log("No Data Fetched");
