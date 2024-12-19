@@ -34,20 +34,7 @@ export const InfoModal = ({ isOpen, onClose, onSave, formData, setFormData }) =>
                             onChange={handleChange}
                             className="w-full p-2 rounded border"
                         />
-                    </div>
-                    <div className="flex flex-col mb-4">
-                        <label htmlFor="gender" className="block">Giới tính</label>
-                        <select
-                            name="gender"
-                            value={formData['gender']}
-                            onChange={handleChange}
-                            className="w-full p-2 rounded border"
-                        >
-                            <option value="Nam">Nam</option>
-                            <option value="Nữ">Nữ</option>
-                            <option value="Khác">Khác</option>
-                        </select>
-                    </div>
+                    </div>                    
                     <div className="flex flex-col mb-4">
                         <label htmlFor="address" className="block">Địa chỉ</label>
                         <input

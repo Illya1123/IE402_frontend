@@ -1,22 +1,37 @@
-import React from "react";
-import userIcon from "../../Assets/userImages/user1.jpg";
+import React, { useEffect, useState } from "react";
+import userIcon from "../../Assets/userImages/default-avatar.jpeg";
 import { HiOutlineIdentification, HiOutlineShoppingCart, HiOutlineHeart } from "react-icons/hi";
 import { BiLogOutCircle } from "react-icons/bi";
+import { getUserById } from "../../api/customer";
 
 const TouristPanel = () => {
-    return (
+    const [avatar, setAvatar] = useState(null);
+    const [userName, setUserName] = useState('');
+
+    useEffect(() => {
+        const fetchData = async(user_id) => {
+            const response = await getUserById(user_id);
+            if (response.avatar !== null) {
+                setAvatar(response.data.avatar);
+            };
+            setUserName(response.data.lastName + ' ' + response.data.firstName);
+        };
+        const user_id = localStorage.getItem('account_id');        
+        fetchData(user_id);
+    }, []);      
+    return (        
         <div className="py-3 mx-3 border border-2 rounded-lg space-y-2 bg-white shadow">
             <div className="h-[5rem] md:h-[9.5rem] xl:h-[8rem] 2xl:h-[5rem] flex-1">
-                    <div className="flex flex-wrap mx-2 space-x-2 space-y-2">
+                    <div classNameb="flex flex-wrap mx-2 space-x-2 space-y-2">
                         <div>
                             <img
-                                src={userIcon}
+                                src={ avatar !== null ? avatar : userIcon}
                                 alt="Ảnh đại diện"
                                 className="h-[75px] w-[100px] rounded-full"
                             ></img>
                         </div>                            
                         <div className="w-3/4 space-y-2">
-                            <h3 className="hidden md:block ml-2 text-start text-xl font-semibold">Nguyễn Anh Kiệt</h3>
+                            <h3 className="hidden md:block ml-2 text-start text-xl font-semibold">{userName}</h3>
                             <h5 className="hidden lg:block ml-2 text-start italic">anhkietnguyen</h5>
                         </div>
                     </div>                            

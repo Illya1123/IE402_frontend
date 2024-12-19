@@ -41,7 +41,7 @@ const SignInForm = () => {
             icon: "success",
             confirmButtonText: "OK",
           }).then(() => {
-            navigate("/");
+            navigate("/");            
             window.location.reload();
           });
           dispatch(setCurrentUserAction(response.token));
@@ -49,6 +49,7 @@ const SignInForm = () => {
           dispatch(setCurrentUserIsLogin(true));
           localStorage.setItem('token', response.token);
           localStorage.setItem('account_name', response.account_name);
+          localStorage.setItem('account_id', response.user_id);
           localStorage.setItem('user_type', response.user_type);
           formik.resetForm();
         }
