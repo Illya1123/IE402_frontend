@@ -163,6 +163,7 @@ const AdminTourForm = ({ onSubmit, tourToEdit, clearEdit }) => {
         });
         setAvatar(null);
         if (clearEdit) clearEdit();
+        window.location.reload();
       } else {
         throw new Error("Failed to add tour");
       }
