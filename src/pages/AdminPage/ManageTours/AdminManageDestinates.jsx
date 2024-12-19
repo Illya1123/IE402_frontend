@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AdminPanel from '../AdminPanel';
-import AdminTourForm from "./AdminTourForm";
-import AdminTourList from "./AdminTourList";
+import AdminDestinateForm from "./AdminDestinateForm";
+import AdminDestinateList from "./AdminDestinateList";
 
 const AdminManageDestinates = () => {
     const [tours, setTours] = useState([]);
@@ -38,13 +38,13 @@ const AdminManageDestinates = () => {
             <div className="w-3/4 flex-1 p-6">
                 <h1 className="text-2xl font-bold text-gray-800 mb-6">Quản lý tour</h1>
 
-                <AdminTourForm
+                <AdminDestinateForm
                     onSubmit={addOrUpdateTour}
                     tourToEdit={tourToEdit}
                     clearEdit={() => setTourToEdit(null)}
                 />
 
-                <AdminTourList 
+                <AdminDestinateList 
                     tours={tours} 
                     onEdit={editTour} 
                     onDelete={deleteTour} 
