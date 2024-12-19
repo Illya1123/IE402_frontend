@@ -56,7 +56,7 @@ const Main = () => {
                         return (
                             <div key={id} className="singleDestination">
                                 <div className="imageDiv">
-                                    <img src={img || '/default-image.jpg'} alt={tourName} /> {}
+                                    <img src={img || '/default-image.jpg'} alt={tourName} />
                                 </div>
 
                                 <div className="cardInfo">
@@ -79,7 +79,7 @@ const Main = () => {
                                         <p>{description}</p>
                                     </div>
 
-                                    <button className="btn flex" onClick={() => navigate("/detail")}>
+                                    <button className="btn flex" onClick={() => navigate(`/detail/${id}`)}>
                                         <span>CHI TIẾT</span> <HiOutlineClipboardCheck className="icon" />
                                     </button>
                                 </div>
