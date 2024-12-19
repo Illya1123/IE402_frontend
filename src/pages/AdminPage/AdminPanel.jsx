@@ -4,7 +4,9 @@ import {
     Home, 
     Plane, 
     TicketCheck,
-    Locate
+    Locate,
+    Route,
+    Waypoints
 } from 'lucide-react';
 import { NavLink } from 'react-router-dom'
 
@@ -24,6 +26,8 @@ const AdminPanel = () => {
                         { key: '../admin-manage-accounts', icon: <Layers3 />, label: 'Quản Lý Tài Khoản'},
                         { key: '../admin-manage-tours', icon: <Plane />, label: 'Quản Lý Tour' },
                         { key: '../admin-manage-destinates', icon: <Locate />, label: 'Quản Lý Destinate' },
+                        { key: '../admin-manage-routes' , icon: <Route />, label: 'Quản Lý Route' },
+                        { key: '../admin-manage-route_destinates', icon: <Waypoints />, label: 'Quản Lý khởi tạo lộ trình qua các địa điểm' },
                         { key: '../admin-manage-bookings', icon: <TicketCheck />, label: 'Quản Lý Đặt Vé' }
                     ].map(item => (
                         <li 

@@ -9,7 +9,7 @@ const AdminTourList = ({ onEdit, onDelete }) => {
       try {
         const response = await fetch("http://localhost:5000/tours/getAllTour");
         const result = await response.json();
-        
+
         if (result.status === "success") {
           setTours(result.data);
         } else {
@@ -48,41 +48,44 @@ const AdminTourList = ({ onEdit, onDelete }) => {
         onChange={(e) => setSearch(e.target.value)}
         className="mb-4 p-2 border border-gray-300 rounded"
       />
-      <table className="min-w-full table-auto bg-white rounded-lg shadow-md">
-        <thead>
-          <tr className="bg-gray-200">
-            <th className="py-3 px-4 text-left">Tên Tour</th>
-            <th className="py-3 px-4 text-left">Mô Tả</th>
-            <th className="py-3 px-4 text-center">Giá</th>
-            <th className="py-3 px-4 text-center">Loại Tour</th>
-            <th className="py-3 px-4 text-center">Hành Động</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredTours.map((tour) => (
-            <tr key={tour.id} className="border-b">
-              <td className="py-3 px-4">{tour.tourName}</td>
-              <td className="py-3 px-4">{tour.description}</td>
-              <td className="py-3 px-4 text-center">{formatCurrency(tour.price)}</td>
-              <td className="py-3 px-4 text-center">{tour.tourType}</td>
-              <td className="py-3 px-4 text-center">
-                <button
-                  onClick={() => onEdit(tour)}
-                  className="bg-yellow-500 text-white px-4 py-2 rounded-md"
-                >
-                  Cập Nhật
-                </button>
-                <button
-                  onClick={() => onDelete(tour.id)}
-                  className="bg-red-500 text-white px-4 py-2 rounded-md ml-2"
-                >
-                  Xóa
-                </button>
-              </td>
+      {/* Div chứa bảng thêm cuộn dọc */}
+      <div className="max-h-80 overflow-y-auto rounded-lg shadow-md border border-gray-300">
+        <table className="min-w-full table-auto bg-white">
+          <thead className="bg-gray-200 sticky top-0 z-10">
+            <tr>
+              <th className="py-3 px-4 text-left">Tên Tour</th>
+              <th className="py-3 px-4 text-left">Mô Tả</th>
+              <th className="py-3 px-4 text-center">Giá</th>
+              <th className="py-3 px-4 text-center">Loại Tour</th>
+              <th className="py-3 px-4 text-center">Hành Động</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {filteredTours.map((tour) => (
+              <tr key={tour.id} className="border-b">
+                <td className="py-3 px-4">{tour.tourName}</td>
+                <td className="py-3 px-4">{tour.description}</td>
+                <td className="py-3 px-4 text-center">{formatCurrency(tour.price)}</td>
+                <td className="py-3 px-4 text-center">{tour.tourType}</td>
+                <td className="py-3 px-4 text-center">
+                  <button
+                    onClick={() => onEdit(tour)}
+                    className="bg-yellow-500 text-white px-4 py-2 rounded-md"
+                  >
+                    Cập Nhật
+                  </button>
+                  <button
+                    onClick={() => onDelete(tour.id)}
+                    className="bg-red-500 text-white px-4 py-2 rounded-md ml-2"
+                  >
+                    Xóa
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 };

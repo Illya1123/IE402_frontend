@@ -17,6 +17,8 @@ import AdminDashboard from './pages/AdminPage/Dashboard/AdminDashboard.jsx'
 import AdminManageAccounts from './pages/AdminPage/ManageAccounts/AdminManageAccounts.jsx';
 import AdminManageTours from './pages/AdminPage/ManageTours/AdminManageTours.jsx';
 import AdminManageDestinates from './pages/AdminPage/ManageTours/AdminManageDestinates.jsx';
+import AdminManageRoutes from './pages/AdminPage/ManageTours/AdminManageRoutes.jsx';
+import AdminManageRouteDestinates from "./pages/AdminPage/ManageTours/AdminManageRouteDestinates.jsx";
 import AdminManageBookings from './pages/AdminPage/ManageBooking/AdminManageBookings.jsx';
 
 const router = createBrowserRouter([
@@ -36,6 +38,8 @@ const router = createBrowserRouter([
       { path: "/admin-manage-accounts", element: <AdminManageAccounts />},
       { path: "/admin-manage-tours", element: <AdminManageTours />},
       { path: "/admin-manage-destinates", element: <AdminManageDestinates />},
+      { path: "/admin-manage-routes", element: <AdminManageRoutes />},
+      { path: "/admin-manage-route_destinates", element: <AdminManageRouteDestinates />},
       { path: "/admin-manage-bookings", element: <AdminManageBookings />}
     ],
   },
