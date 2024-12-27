@@ -1,15 +1,22 @@
 // Modal.js
-import React from 'react';
+import React, { useEffect } from 'react';
+import Swal from 'sweetalert2';
 import { useState } from 'react';
+import { updatePassword } from '../../api/customer';
 
 export const InfoModal = ({ isOpen, onClose, onSave, formData, setFormData }) => {
-    if (!isOpen) return null;
+    const [fullName, setFullName] = useState("");
+    const [birthDate, setBirthDate] = useState() ;   
+    const [address, setAddress] = useState("");
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
+    useEffect(() => {
+        setFullName(formData['full-name']);
+        setBirthDate(formData['birth-date']);
+        setAddress(formData['address']);
+    }, [isOpen]);
     
+    if (!isOpen) return null;    
+
     return (
         <div className="fixed inset-0 top-10 bg-black bg-opacity-50 flex justify-center items-center">
             <div className="bg-white p-6 rounded-lg shadow-lg w-[400px] max-h-[80vh] overflow-auto">
@@ -20,8 +27,8 @@ export const InfoModal = ({ isOpen, onClose, onSave, formData, setFormData }) =>
                         <input
                             name="full-name"
                             type="text"
-                            value={formData['full-name']}
-                            onChange={handleChange}
+                            value={fullName}
+                            onChange={(e) => setFullName(e.target.value)}
                             className="w-full p-2 rounded border"
                         />
                     </div>
@@ -30,8 +37,8 @@ export const InfoModal = ({ isOpen, onClose, onSave, formData, setFormData }) =>
                         <input
                             name="birth-date"
                             type="date"
-                            value={formData['birth-date']}
-                            onChange={handleChange}
+                            value={birthDate ? birthDate.split('/').reverse().join('-') : ''}
+                            onChange={(e) => setBirthDate(e.target.value)}
                             className="w-full p-2 rounded border"
                         />
                     </div>                    
@@ -40,8 +47,8 @@ export const InfoModal = ({ isOpen, onClose, onSave, formData, setFormData }) =>
                         <input
                             name="address"
                             type="text"
-                            value={formData['address']}
-                            onChange={handleChange}
+                            value={address}
+                            onChange={(e) => setAddress(e.target.value)}
                             className="w-full p-2 rounded border"
                         />
                     </div>                   
@@ -56,7 +63,11 @@ export const InfoModal = ({ isOpen, onClose, onSave, formData, setFormData }) =>
                         <button
                             type="button"
                             className="bg-green-500 text-white p-2 rounded"
-                            onClick={() => onSave(formData)}
+                            onClick={() => onSave({
+                                'full-name': fullName,
+                                'birth-date': birthDate,
+                                address: address
+                            })}
                         >
                             Lưu
                         </button>
@@ -69,12 +80,15 @@ export const InfoModal = ({ isOpen, onClose, onSave, formData, setFormData }) =>
 
 
 export const AccountModal = ({ isOpen, onClose, onSave, formData, setFormData }) => {
-    if (!isOpen) return null;
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
+    useEffect(() => {
+        setEmail(formData['email']);
+        setPhone(formData['phone']);
+    }, [isOpen]);
+
+    if (!isOpen) return null;
     
     return (
         <div className="fixed inset-0 top-10 bg-black bg-opacity-50 flex justify-center items-center">
@@ -86,8 +100,8 @@ export const AccountModal = ({ isOpen, onClose, onSave, formData, setFormData })
                         <input
                             name="email"
                             type="email"
-                            value={formData['email']}
-                            onChange={handleChange}
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                             className="w-full p-2 rounded border"
                         />
                     </div>
@@ -96,8 +110,8 @@ export const AccountModal = ({ isOpen, onClose, onSave, formData, setFormData })
                         <input
                             name="phone"
                             type="text"
-                            value={formData['phone']}
-                            onChange={handleChange}
+                            value={phone}
+                            onChange={(e) => setPhone(e.target.value)}
                             className="w-full p-2 rounded border"
                         />
                     </div>                    
@@ -112,7 +126,10 @@ export const AccountModal = ({ isOpen, onClose, onSave, formData, setFormData })
                         <button
                             type="button"
                             className="bg-green-500 text-white p-2 rounded"
-                            onClick={() => onSave(formData)}
+                            onClick={() => (onSave({
+                                email: email, 
+                                phone: phone
+                            }))}
                         >
                             Lưu
                         </button>
@@ -123,42 +140,114 @@ export const AccountModal = ({ isOpen, onClose, onSave, formData, setFormData })
     );
 };
 
+export const ChangePassModal = ({ isOpen, onClose, onSave, formData, setFormData }) => {    
+    const [newPassword, setNewPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [currentPassword, setCurrentPassword] = useState("");
 
-export const ChangePassModal = ({ isOpen, onClose, onSave, formData, setFormData }) => {
-    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     if (!isOpen) return null;
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
-
-    const togglePasswordVisibility = () => {
-        setIsPasswordVisible(!isPasswordVisible);
-    };
     
+    // Function for checking password format
+    const validatePassword = (password) => {        
+        const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d][A-Za-z\d!@#$%^&*()_+]{8,19}$/;
+        return passwordRegex.test(password);
+    };    
+
+    const handleUpdatePassword = async(currentPass, newPass, confirmPass) => {        
+
+        // Check confirm password
+        if (newPass !== confirmPass) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Mật khẩu xác nhận không khớp!',
+            });
+            return;
+        }
+
+        // Check currentPassword & newPassword format
+        if (currentPass === "") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Mật khẩu hiện tại không được để trống!',
+            });
+            return;
+        }
+    
+        if (!validatePassword(newPass)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Mật khẩu mới phải chứa ít nhất 8 ký tự, một chữ cái, một số và một ký tự đặc biệt!',
+            });
+            return;
+        }    
+
+        // Send new password to server - check current password in server
+        let account_id = localStorage.getItem("account_id");
+        try {
+            const response = await updatePassword(account_id, currentPass, newPass);        
+            // Update Form and Alert to client
+            if (response.status) {
+                onSave(formData);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'success',
+                    text: "Thay đổi mật khẩu thành công!"
+                });    
+            };
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Mật khẩu hiện tại nhập vào không đúng!',
+            });
+        };  
+    };
+
     return (
         <div className="fixed inset-0 top-10 bg-black bg-opacity-50 flex justify-center items-center">
             <div className="bg-white p-6 rounded-lg shadow-lg w-[400px] max-h-[80vh] overflow-auto">
                 <h3 className="text-2xl font-semibold mb-4">Cập nhật mật khẩu</h3>
                 <form onSubmit={(e) => e.preventDefault()}>                    
                     <div className="flex flex-col mb-4">
-                        <label htmlFor="password">Mật khẩu</label>
+                        <label htmlFor="password">Nhập mật khẩu hiện tại</label>
                         <div className="relative">
                             <input
                                 name="password"
-                                type={isPasswordVisible ? "text" : "password"}  // Toggle between password and text
-                                value={formData['password']}
-                                onChange={handleChange}
+                                type={"text"}
+                                placeholder='Nhập mật khẩu hiện tại ...'
+                                value={currentPassword}
+                                onChange={(e) => setCurrentPassword(e.target.value)}
                                 className="w-full p-2 rounded border"
-                            />
-                            <button
-                                type="button"
-                                onClick={togglePasswordVisibility}
-                                className="absolute right-3 top-0.5 text-gray-500"
-                            >
-                                {isPasswordVisible ? "Ẩn" : "Hiện"}
-                            </button>
+                            />                            
+                        </div>
+                    </div>
+                    <div className="flex flex-col mb-4">
+                        <label htmlFor="password">Nhập mật khẩu mới</label>
+                        <div className="relative">
+                            <input
+                                name="password"
+                                type={"text"}
+                                placeholder='Nhập mật khẩu mới ...'
+                                value={newPassword}
+                                onChange={(e) => setNewPassword(e.target.value)}
+                                className="w-full p-2 rounded border"
+                            />                            
+                        </div>
+                    </div>
+                    <div className="flex flex-col mb-4">
+                        <label htmlFor="password-confirm">Nhập lại mật khẩu mới</label>
+                        <div className="relative">
+                            <input
+                                name="password-confirm"
+                                type={"text"}
+                                placeholder='Nhập lại mật khẩu mới ...'
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                                className="w-full p-2 rounded border"
+                            />                            
                         </div>
                     </div>
                     <div className="flex justify-end space-x-4">
@@ -172,7 +261,7 @@ export const ChangePassModal = ({ isOpen, onClose, onSave, formData, setFormData
                         <button
                             type="button"
                             className="bg-green-500 text-white p-2 rounded"
-                            onClick={() => onSave(formData)}
+                            onClick={() => {handleUpdatePassword(currentPassword, newPassword, confirmPassword);}}
                         >
                             Lưu
                         </button>
