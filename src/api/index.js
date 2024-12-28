@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const api = `http://localhost:5000/`
+const api = `https://ie402-backend.onrender.com/`
 
 const signup = async (param) => {
   // Tạo object data với các trường bắt buộc
@@ -25,7 +25,7 @@ const signup = async (param) => {
   }
 
   try {
-    const response = await axios.post('http://localhost:5000/auth/signup/', data);
+    const response = await axios.post('https://ie402-backend.onrender.com/auth/signup/', data);
     console.log("Signup successful:", response.data);
     return response.data;
   } catch (error) {
@@ -42,7 +42,7 @@ const signup = async (param) => {
     };
   
     try {
-      const response = await axios.post('http://localhost:5000/auth/login/', data);
+      const response = await axios.post('https://ie402-backend.onrender.com/auth/login/', data);
       console.log("Signin successful:", response.data);
       return response.data;
     } catch (error) {

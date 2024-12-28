@@ -16,18 +16,18 @@ const Detail = () => {
     useEffect(() => {
         const fetchTourDetail = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/tours/get-tour-by-this-id/${id}`);
+                const response = await fetch(`https://ie402-backend.onrender.com/tours/get-tour-by-this-id/${id}`);
                 const result = await response.json();
                 if (result.status === "success") {
                     setTourDetail(result.data);
 
-                    const routeResponse = await fetch(`http://localhost:5000/routes/${result.data.route_id}/destinations`);
+                    const routeResponse = await fetch(`https://ie402-backend.onrender.com/routes/${result.data.route_id}/destinations`);
                     const routeResult = await routeResponse.json();
                     if (routeResult.status === "success") {
                         const destinationsWithDetails = await Promise.all(
                             routeResult.data.map(async (destination) => {
                                 const destResponse = await fetch(
-                                    `http://localhost:5000/destinations/get/${destination.destinate_id}`
+                                    `https://ie402-backend.onrender.com/destinations/get/${destination.destinate_id}`
                                 );
                                 const destResult = await destResponse.json();
                                 if (destResult.status === "success") {
@@ -62,7 +62,7 @@ const Detail = () => {
                             .join("\n\n");
                         setFullDescription(result.data.description + "\n\n" + concatenatedDescription);
 
-                        const guideResponse = await fetch(`http://localhost:5000/users/getUser/2`);
+                        const guideResponse = await fetch(`https://ie402-backend.onrender.com/users/getUser/2`);
                         const guideResult = await guideResponse.json();
                         if (guideResult.status === "success") {
                             const guide = guideResult.data.rows.find(
@@ -165,7 +165,7 @@ const Detail = () => {
     }
 
     const { tourName, img, price, limitOfNumOfGuest } = tourDetail;
-    const imageUrl = `http://localhost:5000/photo?path=${img}`;
+    const imageUrl = `https://ie402-backend.onrender.com/photo?path=${img}`;
 
     return (
         <section className="detail container section">

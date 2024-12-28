@@ -56,7 +56,7 @@ const SignupForm = () => {
           const avatarData = new FormData();
           avatarData.append("avatar", avatar);
 
-          const avatarResponse = await fetch("http://localhost:5000/upload-avatar", {
+          const avatarResponse = await fetch("https://ie402-backend.onrender.com/upload-avatar", {
             method: "POST",
             body: avatarData,
           });

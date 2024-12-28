@@ -8,7 +8,7 @@ const AdminRouteDestinatesForm = () => {
   useEffect(() => {
     const fetchRoutes = async () => {
       try {
-        const response = await fetch("http://localhost:5000/routes/get-all-routes");
+        const response = await fetch("https://ie402-backend.onrender.com/routes/get-all-routes");
         const result = await response.json();
 
         if (result.status === "success") {
@@ -41,7 +41,7 @@ const AdminRouteDestinatesForm = () => {
       const token = localStorage.getItem("token");
       const payload = { route_id: selectedRouteId };
 
-      const response = await fetch(`http://localhost:5000/routes/${selectedRouteId}/destinations`, {
+      const response = await fetch(`https://ie402-backend.onrender.com/routes/${selectedRouteId}/destinations`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

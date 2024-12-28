@@ -32,7 +32,7 @@ const AdminDestinateForm = ({ onSubmit, destinationToEdit, clearEdit }) => {
 
       const token = localStorage.getItem("token");
 
-      const response = await fetch("http://localhost:5000/destinations/create", {
+      const response = await fetch("https://ie402-backend.onrender.com/destinations/create", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

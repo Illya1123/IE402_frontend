@@ -10,7 +10,7 @@ const Main = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:5000/tours/getAllTour');
+                const response = await fetch('https://ie402-backend.onrender.com/tours/getAllTour');
                 const result = await response.json();
                 if (result.status === "success") {
                     const updatedData = await Promise.all(result.data.map(async (tour) => {
@@ -29,7 +29,7 @@ const Main = () => {
 
     const fetchImage = async (path) => {
         try {
-            const response = await fetch(`http://localhost:5000/photo?path=${path}`);
+            const response = await fetch(`https://ie402-backend.onrender.com/photo?path=${path}`);
             if (response.ok) {
                 const blob = await response.blob();
                 return URL.createObjectURL(blob); 

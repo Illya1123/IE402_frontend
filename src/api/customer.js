@@ -5,7 +5,7 @@ const getUserById = async(id) => {
     try {
         // Get token from local storage
         const token = localStorage.getItem('token');
-        const response = await axios.get(`http://localhost:5000/users/${id}`, {
+        const response = await axios.get(`https://ie402-backend.onrender.com/users/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             }
@@ -24,7 +24,7 @@ const getCustomerById = async(id) => {
     try {
         // Get token from local storage
         const token = localStorage.getItem('token');
-        const response = await axios.get(`http://localhost:5000/customers/${id}`, {
+        const response = await axios.get(`https://ie402-backend.onrender.com/customers/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             }
@@ -43,7 +43,7 @@ const updateCustomerById = async(id, item)  => {
   try {
     // Get token from local storage
     const token = localStorage.getItem('token');
-    const response = await axios.post(`http://localhost:5000/customers/update/${id}`, item, {
+    const response = await axios.post(`https://ie402-backend.onrender.com/customers/update/${id}`, item, {
         headers: {
             Authorization: `Bearer ${token}`,
         }
@@ -63,7 +63,7 @@ const updateAccountById = async(id, item)  => {
   try {
     // Get token from local storage
     const token = localStorage.getItem('token');
-    const response = await axios.post(`http://localhost:5000/customers/account_update/${id}`, item, {
+    const response = await axios.post(`https://ie402-backend.onrender.com/customers/account_update/${id}`, item, {
         headers: {
             Authorization: `Bearer ${token}`,
         }
@@ -82,7 +82,7 @@ const updatePassword = async(id, oldPassword, newPassword) => {
   try {
     // Get token from local storage
     const token = localStorage.getItem('token');
-    const response = await axios.patch(`http://localhost:5000/users/change-password`, 
+    const response = await axios.patch(`https://ie402-backend.onrender.com/users/change-password`, 
       { oldPassword, newPassword }, 
       {
         headers: {

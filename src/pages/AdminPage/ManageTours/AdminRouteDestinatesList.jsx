@@ -9,7 +9,7 @@ const AdminRouteDestinationsList = ({ onEdit, onDelete }) => {
   useEffect(() => {
     const fetchDestinations = async () => {
       try {
-        const response = await fetch("http://localhost:5000/routes/get-all-route-destinations");
+        const response = await fetch("https://ie402-backend.onrender.com/routes/get-all-route-destinations");
         const result = await response.json();
 
         if (result.status === "success") {
@@ -24,7 +24,7 @@ const AdminRouteDestinationsList = ({ onEdit, onDelete }) => {
 
     const fetchTours = async () => {
       try {
-        const response = await fetch("http://localhost:5000/tours/getAllTour");
+        const response = await fetch("https://ie402-backend.onrender.com/tours/getAllTour");
         const result = await response.json();
 
         if (result.status === "success") {

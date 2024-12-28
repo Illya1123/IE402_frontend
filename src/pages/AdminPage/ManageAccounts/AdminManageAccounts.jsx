@@ -13,7 +13,7 @@ const AdminManageAccounts = () => {
     const fetchAccounts = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("http://localhost:5000/users", {
+        const response = await axios.get("https://ie402-backend.onrender.com/users", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

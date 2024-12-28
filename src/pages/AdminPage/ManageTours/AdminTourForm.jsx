@@ -28,7 +28,7 @@ const AdminTourForm = ({ onSubmit, tourToEdit, clearEdit }) => {
     const fetchGuides = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch("http://localhost:5000/users/filter/2", {
+        const response = await fetch("https://ie402-backend.onrender.com/users/filter/2", {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -59,7 +59,7 @@ const AdminTourForm = ({ onSubmit, tourToEdit, clearEdit }) => {
     const fetchRoutes = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch("http://localhost:5000/routes/get-all-routes", {
+        const response = await fetch("https://ie402-backend.onrender.com/routes/get-all-routes", {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -104,7 +104,7 @@ const AdminTourForm = ({ onSubmit, tourToEdit, clearEdit }) => {
         const formData = new FormData();
         formData.append("image", avatar);
 
-        const response = await fetch("http://localhost:5000/upload", {
+        const response = await fetch("https://ie402-backend.onrender.com/upload", {
           method: "POST",
           body: formData,
         });
@@ -132,7 +132,7 @@ const AdminTourForm = ({ onSubmit, tourToEdit, clearEdit }) => {
 
       const token = localStorage.getItem("token");
 
-      const response = await fetch("http://localhost:5000/tours/create-tour", {
+      const response = await fetch("https://ie402-backend.onrender.com/tours/create-tour", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

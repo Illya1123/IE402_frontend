@@ -7,7 +7,7 @@ const AdminRouteList = ({ onEdit, onDelete }) => {
   useEffect(() => {
     const fetchRoutes = async () => {
       try {
-        const response = await fetch("http://localhost:5000/routes/get-all-routes");
+        const response = await fetch("https://ie402-backend.onrender.com/routes/get-all-routes");
         const result = await response.json();
 
         if (result.status === "success") {

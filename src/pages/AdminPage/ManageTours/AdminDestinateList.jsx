@@ -7,7 +7,7 @@ const AdminDestinateList = ({ onEdit, onDelete }) => {
   useEffect(() => {
     const fetchDestinations = async () => {
       try {
-        const response = await fetch("http://localhost:5000/destinations/getAll");
+        const response = await fetch("https://ie402-backend.onrender.com/destinations/getAll");
         const result = await response.json();
 
         if (result.status === "success") {

@@ -3,7 +3,7 @@ import axios from "axios";
 
 const getAllTours = async () => {
   try {
-    const response = await axios.get("http://localhost:5000/tours/getAll");
+    const response = await axios.get("https://ie402-backend.onrender.com/tours/getAll");
     return response.data;
   } catch (error) {
     console.error(
@@ -16,7 +16,7 @@ const getAllTours = async () => {
 
 const getAllTickets = async () => {
   try {
-    const response = await axios.get("http://localhost:5000/bookings/getAll");
+    const response = await axios.get("https://ie402-backend.onrender.com/bookings/getAll");
     return response.data;
   } catch (error) {
     console.error(
@@ -29,7 +29,7 @@ const getAllTickets = async () => {
 
 const getAllCustomers = async () => {
   try {
-    const response = await axios.get("http://localhost:5000/customers/getAll");
+    const response = await axios.get("https://ie402-backend.onrender.com/customers/getAll");
     return response.data;
   } catch (error) {
     console.error(

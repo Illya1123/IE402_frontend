@@ -2,7 +2,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 const http = axios.create({
-    baseURL: 'http://localhost:5000',
+    baseURL: 'https://ie402-backend.onrender.com',
     timeout: 5000
 })
 

@@ -17,7 +17,7 @@ const AdminRouteForm = ({ onSubmit, routeToEdit, clearEdit }) => {
   useEffect(() => {
     const fetchDestinations = async () => {
       try {
-        const response = await fetch("http://localhost:5000/destinations/getAll");
+        const response = await fetch("https://ie402-backend.onrender.com/destinations/getAll");
         const result = await response.json();
 
         if (result.status === "success") {
@@ -53,7 +53,7 @@ const AdminRouteForm = ({ onSubmit, routeToEdit, clearEdit }) => {
 
     try {
       const fetchLocationDetails = async (locationId) => {
-        const response = await fetch(`http://localhost:5000/destinations/get/${locationId}`);
+        const response = await fetch(`https://ie402-backend.onrender.com/destinations/get/${locationId}`);
         const result = await response.json();
         if (result.status === "success") {
           return result.data;
@@ -77,7 +77,7 @@ const AdminRouteForm = ({ onSubmit, routeToEdit, clearEdit }) => {
 
       const token = localStorage.getItem("token");
 
-      const response = await fetch("http://localhost:5000/routes/create-route", {
+      const response = await fetch("https://ie402-backend.onrender.com/routes/create-route", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
