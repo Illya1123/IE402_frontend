@@ -75,7 +75,7 @@ const AdminRouteDestinationsList = ({ onEdit, onDelete }) => {
         placeholder="Tìm kiếm..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        className="mb-4 p-2 border border-gray-300 rounded"
+        className="border p-2 mb-4 w-full rounded-md"
       />
       
       <div className="max-h-80 overflow-y-auto rounded-lg shadow-md border border-gray-300">
