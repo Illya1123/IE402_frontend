@@ -1,40 +1,99 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import userIcon from "../../Assets/userImages/default-avatar.jpeg";
 import { HiOutlineIdentification, HiOutlineShoppingCart, HiOutlineHeart } from "react-icons/hi";
 import { BiLogOutCircle } from "react-icons/bi";
 import { getUserById } from "../../api/customer";
 
-const TouristPanel = () => {
+const TouristPanel = ({ username, email }) => {
     const [avatar, setAvatar] = useState(null);
-    const [userName, setUserName] = useState('');
-
-    useEffect(() => {
-        const fetchData = async(user_id) => {
-            const response = await getUserById(user_id);
-            if (response.avatar !== null) {
-                setAvatar(response.data.avatar);
-            };
-            setUserName(response.data.lastName + ' ' + response.data.firstName);
+    
+    const fetchData = async(user_id) => {
+        const response = await getUserById(user_id);
+        if (response.data.avatar !== null) {
+            // Get avatar by using api
+            setAvatar(response.data.avatar);
         };
+    };
+    
+    const handleUpdateAvatar = async(e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = async() => {                
+                const avatarImg = reader.result.split(',')[1];
+                setAvatar(avatarImg); // Save base64 part of image
+                
+                const formData = new FormData();
+                formData.append("avatar", file);
+                
+                // Send image to server
+                try {
+                    let account_id = localStorage.getItem("account_id");
+                    const token = localStorage.getItem('token');                    
+                    const response = await axios.patch(`http://localhost:5000/users/avatar-update/${account_id}`,
+                        formData, {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                            'Content-Type': "multipart/form-data"
+                        }
+                    });
+                    console.log(response)
+                } catch (error) {
+                    console.error(
+                    "Update failed:",
+                    error.response ? error.response.data : error.message,
+                    );
+                    throw error;
+                }
+            };
+            reader.readAsDataURL(file);            
+        }
+    };
+
+    useEffect(() => {        
         const user_id = localStorage.getItem('account_id');        
         fetchData(user_id);
-    }, []);      
+    }, []);
+
     return (        
         <div className="py-3 mx-3 border border-2 rounded-lg space-y-2 bg-white shadow">
-            <div className="h-[5rem] md:h-[9.5rem] xl:h-[8rem] 2xl:h-[5rem] flex-1">
-                    <div classNameb="flex flex-wrap mx-2 space-x-2 space-y-2">
-                        <div>
-                            <img
-                                src={ avatar !== null ? avatar : userIcon}
-                                alt="Ảnh đại diện"
-                                className="h-[75px] w-[100px] rounded-full"
-                            ></img>
-                        </div>                            
-                        <div className="w-3/4 space-y-2">
-                            <h3 className="hidden md:block ml-2 text-start text-xl font-semibold">{userName}</h3>
-                            <h5 className="hidden lg:block ml-2 text-start italic">anhkietnguyen</h5>
+            <div className="h-[5rem] md:h-[9.5rem] lg:h-[5rem] xl:h-[7rem] 2xl:h-[5rem] flex-1">
+                    <div className="flex flex-col lg:flex-row mx-2 space-x-2 space-y-1 lg:space-y-0">
+                        <button 
+                            className="w-full lg:w-1/4 ml-0 lg:ml-auto"
+                            onClick={() => document.getElementById('avatarInput').click()}
+                        >
+                            {
+                            avatar === null ? (
+                                <img
+                                    src={userIcon}
+                                    alt="Ảnh đại diện"
+                                    className="h-[75px] w-[80px] rounded-full ml-5"
+                                ></img>
+                            ) : (
+                                <img
+                                    src={`data:image/png;base64,${avatar}`}
+                                    alt="Ảnh đại diện"
+                                    className="h-[75px] w-[80px] rounded-full ml-5"
+                                ></img>
+                            ) 
+                            }
+                        </button>
+
+                        <input
+                            id="avatarInput"
+                            type="file"
+                            accept="image/*"
+                            onChange={handleUpdateAvatar}
+                            style={{ display: 'none' }}
+                        />
+
+                        <div className="hidden md:block lg:w-3/4 space-y-1">
+                            <h3 className="ml-2 text-start text-xl font-semibold">{username}</h3>
+                            <h5 className="ml-2 text-start italic">{email}</h5>
                         </div>
-                    </div>                            
+                    </div>
             </div>
             <hr/>
             <ul className="mx-2 space-y-1">                                                    
