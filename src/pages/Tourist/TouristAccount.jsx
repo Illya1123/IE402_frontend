@@ -1,9 +1,10 @@
 // Page for user's information and account
 import React from "react";
+import Swal from 'sweetalert2';
 import { useState, useEffect } from "react";
 import TouristPanel from "./TouristPanel.jsx";
 import { InfoModal, AccountModal, ChangePassModal } from "./TouristAccountUpdate.jsx";
-import { getUserById, getCustomerById } from "../../api/customer.js";
+import { getUserById, getCustomerById, updateCustomerById, updateAccountById } from "../../api/customer.js";
 
 const TouristAccount = () => {
     const [isModalInfoOpen, setIsModalInfoOpen] = useState(false);
@@ -25,11 +26,11 @@ const TouristAccount = () => {
             const userData = await getUserById(userId);
             const customerData = await getCustomerById(userId);
             setUserInformation(userData.data);
-            setCustomerInformation(customerData.data);
+            setCustomerInformation(customerData.data);          
             // 
             setFormInfoData({
                 "full-name": userData?.data?.lastName + ' ' + userData?.data?.firstName,
-                "birth-date": formatDateToInputFormat(customerData?.data?.birthdate),
+                "birth-date": customerData?.data?.birthdate,
                 "address": customerData?.data?.address,
             });
             // 
@@ -46,11 +47,6 @@ const TouristAccount = () => {
         }        
     };
 
-    const formatDateToInputFormat = (date) => {
-        if (!date) return "";
-        const [day, month, year] = date.split('/'); // Split the date into day, month, year
-        return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`; // Reformat to YYYY-MM-DD
-    };
 
     useEffect(() => {        
         const account_id = localStorage.getItem("account_id");
@@ -81,29 +77,103 @@ const TouristAccount = () => {
         setIsModalChangePassOpen(false);
     };
 
-    const handleSaveInfo = (updatedData) => {
+    const handleSaveInfo = async(updatedData) => { 
+        // Checking full name length 
+        if (updatedData['full-name'].length <= 1) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Tên có độ dài tối thiểu 2 kí tự. Hãy nhập lại!',
+            });
+            return;
+        }
+
+        // Checking address length
+        if (updatedData['address'].length < 1) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Địa chỉ không được rỗng. Hãy nhập lại!',
+            });
+            return;
+        }        
+        // Send updated data to server
+        let account_id = localStorage.getItem("account_id");
+        await updateCustomerById(account_id, updatedData);
         setFormInfoData(updatedData);
         closeModalInfo();
     };
 
-    const handleSaveAccount = (updatedData) => {
-        setFormAccountData(updatedData);
-        closeModalAccount();
+    // Function for checking phone number format
+    const validatePhone = (phone) => {
+        const phoneRegex = /^[0-9]{10,11}$/;
+        return phoneRegex.test(phone);
+    };
+
+    // Function for checking email format
+    const validateEmail = (email) => {
+        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        return emailRegex.test(email);
+    };
+
+    const handleSaveAccount = async(updatedData) => {        
+        // Checking email format
+        if (!validateEmail(updatedData['email'])) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Email không hợp lệ. Hãy nhập lại!',
+            });
+            return;
+        }
+
+        // Checking phone number format
+        if (!validatePhone(updatedData['phone'])) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Số điện thoại phải có ít nhất 10 ký tự số. Hãy nhập lại!',
+            });
+            return;
+        }
+        
+        // Send updated data to server
+        let account_id = localStorage.getItem("account_id");
+        try {
+            await updateAccountById(account_id, updatedData);
+            setFormAccountData(updatedData);
+            closeModalAccount();
+        } catch (error) {
+            if (error.response && error.response.data) {                
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: error.response.data.message || 'An error occurred!',
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Lỗi hệ thống!',
+                });
+            }
+        };        
     };
 
     const handleSavePass = (updatedData) => {
         setFormPassData(updatedData);
+        // Send updated data to server
+
         closeModalPass();
     };
 
     const handleShowPassword = () => {
         setShowPassword(preValue => !preValue);
     };
-    
     return (
         <div className="flex pt-[125px] h-[1200px]">
             <div className="h-full w-1/3">
-                <TouristPanel></TouristPanel>
+                <TouristPanel username={formInfoData['full-name']} email={formAccountData['email']}></TouristPanel>
             </div>
             <div className="w-2/3 h-full flex-1 text-start text-xl space-y-4">
                 <div className="w-full flex flex-wrap justify-between">
@@ -124,7 +194,7 @@ const TouristAccount = () => {
                             <div className="flex flex-col space-y-2">
                                 <label htmlFor="full-name">Họ và tên</label>
                                 <input 
-                                    value={userInformation.lastName + ' ' + userInformation.firstName}
+                                    value={formInfoData['full-name']}
                                     name="full-name"
                                     type="text"
                                     className="w-full rounded border"
@@ -135,7 +205,7 @@ const TouristAccount = () => {
                                 <div className="flex flex-col space-y-2 w-1/2">
                                     <label htmlFor="birth-date" className="block">Ngày sinh</label>
                                     <input
-                                        value={formatDateToInputFormat(customerInformation.birthdate)}
+                                        value={formInfoData['birth-date'] ? formInfoData['birth-date'].split('/').reverse().join('-') : ''}
                                         name="birth-date"
                                         type="date" 
                                         className="w-full rounded border p-2"
@@ -146,7 +216,7 @@ const TouristAccount = () => {
                             <div className="flex flex-col space-y-2">
                                 <label htmlFor="address">Địa chỉ</label>
                                 <input 
-                                    value={customerInformation.address}
+                                    value={formInfoData['address']}
                                     name="address"
                                     type="text" 
                                     className="w-full rounded border"
@@ -171,7 +241,7 @@ const TouristAccount = () => {
                             <div className="flex flex-col space-y-2">
                                 <label htmlFor="email">Email</label>
                                 <input
-                                    value={userInformation.email}
+                                    value={formAccountData['email']}
                                     name="email"
                                     type="text" 
                                     className="w-full rounded border"
@@ -181,7 +251,7 @@ const TouristAccount = () => {
                             <div className="flex flex-col space-y-2">
                                 <label htmlFor="phone">Số điện thoại</label>
                                 <input
-                                    value={userInformation.sdt}
+                                    value={formAccountData['phone']}
                                     name="phone"
                                     type="text" 
                                     className="w-full rounded border"
@@ -199,7 +269,7 @@ const TouristAccount = () => {
                                     </button>
                                 </div>                                
                                 <input
-                                    value={userInformation.password}
+                                    value={formPassData['password']}
                                     name="password"
                                     type={showPassword ? "text" : "password"}
                                     className="w-full rounded border"
