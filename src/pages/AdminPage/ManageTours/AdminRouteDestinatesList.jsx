@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { baseUrl } from "../../../api/index";
 
 const AdminRouteDestinationsList = ({ onEdit, onDelete }) => {
   const [search, setSearch] = useState("");
@@ -9,7 +10,7 @@ const AdminRouteDestinationsList = ({ onEdit, onDelete }) => {
   useEffect(() => {
     const fetchDestinations = async () => {
       try {
-        const response = await fetch("https://ie402-backend.onrender.com/routes/get-all-route-destinations");
+        const response = await fetch(`${baseUrl}/routes/get-all-route-destinations`);
         const result = await response.json();
 
         if (result.status === "success") {
@@ -24,7 +25,7 @@ const AdminRouteDestinationsList = ({ onEdit, onDelete }) => {
 
     const fetchTours = async () => {
       try {
-        const response = await fetch("https://ie402-backend.onrender.com/tours/getAllTour");
+        const response = await fetch(`${baseUrl}/tours/getAllTour`);
         const result = await response.json();
 
         if (result.status === "success") {

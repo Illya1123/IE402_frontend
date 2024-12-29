@@ -1,9 +1,10 @@
 // api/Staff.js
 import axios from "axios";
+import { baseUrl } from "./index";
 
 const getAllTours = async () => {
   try {
-    const response = await axios.get("https://ie402-backend.onrender.com/tours/getAll");
+    const response = await axios.get(`${baseUrl}/tours/getAll`);
     return response.data;
   } catch (error) {
     console.error(
@@ -16,7 +17,7 @@ const getAllTours = async () => {
 
 const getAllTickets = async () => {
   try {
-    const response = await axios.get("https://ie402-backend.onrender.com/bookings/getAll");
+    const response = await axios.get(`${baseUrl}/bookings/getAll`);
     return response.data;
   } catch (error) {
     console.error(
@@ -29,7 +30,7 @@ const getAllTickets = async () => {
 
 const getAllCustomers = async () => {
   try {
-    const response = await axios.get("https://ie402-backend.onrender.com/customers/getAll");
+    const response = await axios.get(`${baseUrl}/customers/getAll`);
     return response.data;
   } catch (error) {
     console.error(

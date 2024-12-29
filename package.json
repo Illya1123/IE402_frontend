@@ -5,6 +5,7 @@
   "dependencies": {
     "@arcgis/map-components-react": "^4.31.6",
     "@material-ui/icons": "^4.11.3",
+    "@react-google-maps/api": "^2.20.5",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -57,6 +58,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
+    "dotenv": "^16.4.7",
     "postcss": "^8.4.49",
     "prettier": "^3.4.1",
     "prettier-plugin-tailwindcss": "^0.6.9",

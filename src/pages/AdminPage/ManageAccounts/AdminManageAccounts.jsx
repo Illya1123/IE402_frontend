@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+import { baseUrl } from "../../../api/index";
 import AdminPanel from "../AdminPanel";
 import AdminAccountList from "./AdminAccountList";
 import AdminAccountForm from "./AdminAccountForm";
@@ -13,7 +14,7 @@ const AdminManageAccounts = () => {
     const fetchAccounts = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("https://ie402-backend.onrender.com/users", {
+        const response = await axios.get(`${baseUrl}/users`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

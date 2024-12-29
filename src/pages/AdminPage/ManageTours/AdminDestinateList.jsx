@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { baseUrl } from "../../../api/index";
 
 const AdminDestinateList = ({ onEdit, onDelete }) => {
   const [search, setSearch] = useState("");
@@ -7,7 +8,7 @@ const AdminDestinateList = ({ onEdit, onDelete }) => {
   useEffect(() => {
     const fetchDestinations = async () => {
       try {
-        const response = await fetch("https://ie402-backend.onrender.com/destinations/getAll");
+        const response = await fetch(`${baseUrl}/destinations/getAll`);
         const result = await response.json();
 
         if (result.status === "success") {

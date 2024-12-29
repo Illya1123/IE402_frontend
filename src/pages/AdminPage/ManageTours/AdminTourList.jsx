@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { baseUrl } from "../../../api/index";
 
 const AdminTourList = ({ onEdit, onDelete }) => {
   const [search, setSearch] = useState("");
@@ -7,7 +8,7 @@ const AdminTourList = ({ onEdit, onDelete }) => {
   useEffect(() => {
     const fetchTours = async () => {
       try {
-        const response = await fetch("https://ie402-backend.onrender.com/tours/getAllTour");
+        const response = await fetch(`${baseUrl}/tours/getAllTour`);
         const result = await response.json();
 
         if (result.status === "success") {

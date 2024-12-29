@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
+import { baseUrl } from "../../../api/index";
 
 const AdminRouteForm = ({ onSubmit, routeToEdit, clearEdit }) => {
   const [destinations, setDestinations] = useState([]);
@@ -17,7 +18,7 @@ const AdminRouteForm = ({ onSubmit, routeToEdit, clearEdit }) => {
   useEffect(() => {
     const fetchDestinations = async () => {
       try {
-        const response = await fetch("https://ie402-backend.onrender.com/destinations/getAll");
+        const response = await fetch(`${baseUrl}/destinations/getAll`);
         const result = await response.json();
 
         if (result.status === "success") {
@@ -53,7 +54,7 @@ const AdminRouteForm = ({ onSubmit, routeToEdit, clearEdit }) => {
 
     try {
       const fetchLocationDetails = async (locationId) => {
-        const response = await fetch(`https://ie402-backend.onrender.com/destinations/get/${locationId}`);
+        const response = await fetch(`${baseUrl}/destinations/get/${locationId}`);
         const result = await response.json();
         if (result.status === "success") {
           return result.data;
@@ -77,7 +78,7 @@ const AdminRouteForm = ({ onSubmit, routeToEdit, clearEdit }) => {
 
       const token = localStorage.getItem("token");
 
-      const response = await fetch("https://ie402-backend.onrender.com/routes/create-route", {
+      const response = await fetch(`${baseUrl}/routes/create-route`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

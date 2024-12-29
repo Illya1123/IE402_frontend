@@ -4,6 +4,7 @@ import userIcon from "../../Assets/userImages/default-avatar.jpeg";
 import { HiOutlineIdentification, HiOutlineShoppingCart, HiOutlineHeart } from "react-icons/hi";
 import { BiLogOutCircle } from "react-icons/bi";
 import { getUserById } from "../../api/customer";
+import { baseUrl } from "../../api";
 
 const TouristPanel = ({ username, email }) => {
     const [avatar, setAvatar] = useState(null);
@@ -31,7 +32,7 @@ const TouristPanel = ({ username, email }) => {
                 try {
                     let account_id = localStorage.getItem("account_id");
                     const token = localStorage.getItem('token');                    
-                    const response = await axios.patch(`http://localhost:5000/users/avatar-update/${account_id}`,
+                    const response = await axios.patch(`${baseUrl}/users/avatar-update/${account_id}`,
                         formData, {
                         headers: {
                             Authorization: `Bearer ${token}`,

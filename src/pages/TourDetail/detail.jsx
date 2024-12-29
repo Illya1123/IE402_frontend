@@ -5,6 +5,9 @@ import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { FcRating } from "react-icons/fc";
 import { TbMoneybag } from "react-icons/tb";
 import getAddressFromLatLng from "../../api/getAddressFromLatLng";
+import { baseUrl } from "../../api";
+
+const OPENROUTESERVICE_API_KEY = process.env.REACT_APP_OPENROUTESERVICE;
 
 const Detail = () => {
     const { id } = useParams();
@@ -16,18 +19,18 @@ const Detail = () => {
     useEffect(() => {
         const fetchTourDetail = async () => {
             try {
-                const response = await fetch(`https://ie402-backend.onrender.com/tours/get-tour-by-this-id/${id}`);
+                const response = await fetch(`${baseUrl}/tours/get-tour-by-this-id/${id}`);
                 const result = await response.json();
                 if (result.status === "success") {
                     setTourDetail(result.data);
 
-                    const routeResponse = await fetch(`https://ie402-backend.onrender.com/routes/${result.data.route_id}/destinations`);
+                    const routeResponse = await fetch(`${baseUrl}/routes/${result.data.route_id}/destinations`);
                     const routeResult = await routeResponse.json();
                     if (routeResult.status === "success") {
                         const destinationsWithDetails = await Promise.all(
                             routeResult.data.map(async (destination) => {
                                 const destResponse = await fetch(
-                                    `https://ie402-backend.onrender.com/destinations/get/${destination.destinate_id}`
+                                    `${baseUrl}/destinations/get/${destination.destinate_id}`
                                 );
                                 const destResult = await destResponse.json();
                                 if (destResult.status === "success") {
@@ -62,7 +65,7 @@ const Detail = () => {
                             .join("\n\n");
                         setFullDescription(result.data.description + "\n\n" + concatenatedDescription);
 
-                        const guideResponse = await fetch(`https://ie402-backend.onrender.com/users/getUser/2`);
+                        const guideResponse = await fetch(`${baseUrl}/users/getUser/2`);
                         const guideResult = await guideResponse.json();
                         if (guideResult.status === "success") {
                             const guide = guideResult.data.rows.find(
@@ -105,7 +108,7 @@ const Detail = () => {
                 zoom: 10,
             });
 
-            const points = destinations.map((destination) => {
+            destinations.forEach((destination) => {
                 const point = {
                     type: "point",
                     longitude: destination.longitude,
@@ -137,35 +140,70 @@ const Detail = () => {
                 });
 
                 view.graphics.add(pointGraphic);
-                return [destination.longitude, destination.latitude];
             });
 
-            const polyline = {
-                type: "polyline",
-                paths: points,
+            const calculateRoutes = async () => {
+                for (let i = 0; i < destinations.length - 1; i++) {
+                    const start = destinations[i];
+                    const end = destinations[i + 1];
+
+                    try {
+                        const response = await fetch(
+                            `https://api.openrouteservice.org/v2/directions/driving-car?api_key=${OPENROUTESERVICE_API_KEY}&start=${start.longitude},${start.latitude}&end=${end.longitude},${end.latitude}`,
+                            {
+                                headers: {
+                                    Accept: "application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8",
+                                },
+                            }
+                        );
+
+                        if (!response.ok) {
+                            console.error(`Failed to fetch route for pair ${i}:`, response.statusText);
+                            continue;
+                        }
+
+                        const routeData = await response.json();
+
+                        if (routeData.features && routeData.features.length > 0) {
+                            const coordinates = routeData.features[0].geometry.coordinates;
+
+                            const polyline = {
+                                type: "polyline",
+                                paths: coordinates.map(([lng, lat]) => [lng, lat]),
+                            };
+
+                            const lineSymbol = {
+                                type: "simple-line",
+                                color: [0, 0, 255],
+                                width: 3,
+                            };
+
+                            const polylineGraphic = new Graphic({
+                                geometry: polyline,
+                                symbol: lineSymbol,
+                            });
+
+                            view.graphics.add(polylineGraphic);
+                        } else {
+                            console.log(`No route found for pair ${i}`);
+                        }
+                    } catch (error) {
+                        console.error(`Error calculating route for pair ${i}:`, error);
+                    }
+                }
             };
 
-            const lineSymbol = {
-                type: "simple-line",
-                color: [0, 0, 255],
-                width: 2,
-            };
-
-            const polylineGraphic = new Graphic({
-                geometry: polyline,
-                symbol: lineSymbol,
-            });
-
-            view.graphics.add(polylineGraphic);
+            calculateRoutes();
         });
     };
+    
 
     if (!tourDetail || !guideInfo) {
         return <div>Loading...</div>;
     }
 
     const { tourName, img, price, limitOfNumOfGuest } = tourDetail;
-    const imageUrl = `https://ie402-backend.onrender.com/photo?path=${img}`;
+    const imageUrl = `${baseUrl}/photo?path=${img}`;
 
     return (
         <section className="detail container section">
@@ -205,11 +243,11 @@ const Detail = () => {
                                 <p className="text-lg text-gray-700">{limitOfNumOfGuest} người</p>
                             </div>
                             <div className="guideInfo bg-gray-100 p-4 rounded-lg shadow-lg mt-6">
-                            <h4 className="text-xl font-bold text-orange-500">Hướng dẫn viên:</h4>
-                            <p><strong>Tên:</strong> {guideInfo.name}</p>
-                            <p><strong>Email:</strong> {guideInfo.email}</p>
-                            <p><strong>Ngôn ngữ:</strong> {guideInfo.language}</p>
-                        </div>
+                                <h4 className="text-xl font-bold text-orange-500">Hướng dẫn viên:</h4>
+                                <p><strong>Tên:</strong> {guideInfo.name}</p>
+                                <p><strong>Email:</strong> {guideInfo.email}</p>
+                                <p><strong>Ngôn ngữ:</strong> {guideInfo.language}</p>
+                            </div>
                         </div>
                     </div>
                 </div>

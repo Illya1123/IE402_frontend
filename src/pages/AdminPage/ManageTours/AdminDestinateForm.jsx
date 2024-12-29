@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
+import { baseUrl } from "../../../api/index";
 
 const AdminDestinateForm = ({ onSubmit, destinationToEdit, clearEdit }) => {
   const [destination, setDestination] = useState({
@@ -32,7 +33,7 @@ const AdminDestinateForm = ({ onSubmit, destinationToEdit, clearEdit }) => {
 
       const token = localStorage.getItem("token");
 
-      const response = await fetch("https://ie402-backend.onrender.com/destinations/create", {
+      const response = await fetch(`${baseUrl}/destinations/create`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

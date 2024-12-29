@@ -1,8 +1,9 @@
 import axios from "axios";
 import Swal from "sweetalert2";
+import { baseUrl } from "../api/index";
 
 const http = axios.create({
-    baseURL: 'https://ie402-backend.onrender.com',
+    baseURL: `${baseUrl}`,
     timeout: 5000
 })
 

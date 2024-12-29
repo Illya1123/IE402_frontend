@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const api = `https://ie402-backend.onrender.com/`
+// online: https://ie402-backend.onrender.com
+// local: http://localhost:5000
+const baseUrl = `https://ie402-backend.onrender.com`
 
 const signup = async (param) => {
   // Tạo object data với các trường bắt buộc
@@ -25,7 +27,7 @@ const signup = async (param) => {
   }
 
   try {
-    const response = await axios.post('https://ie402-backend.onrender.com/auth/signup/', data);
+    const response = await axios.post(`${baseUrl}/auth/signup/`, data);
     console.log("Signup successful:", response.data);
     return response.data;
   } catch (error) {
@@ -42,7 +44,7 @@ const signup = async (param) => {
     };
   
     try {
-      const response = await axios.post('https://ie402-backend.onrender.com/auth/login/', data);
+      const response = await axios.post(`${baseUrl}/auth/login/`, data);
       console.log("Signin successful:", response.data);
       return response.data;
     } catch (error) {
@@ -51,4 +53,4 @@ const signup = async (param) => {
     }
   };
 
-export { api, signup, signin };
+export { baseUrl, signup, signin };

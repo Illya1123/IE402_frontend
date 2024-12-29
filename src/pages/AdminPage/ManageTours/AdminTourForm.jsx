@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
+import { baseUrl } from "../../../api";
 
 const formatDate = (date) => {
   const [year, month, day] = date.split("-");
@@ -28,7 +29,7 @@ const AdminTourForm = ({ onSubmit, tourToEdit, clearEdit }) => {
     const fetchGuides = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch("https://ie402-backend.onrender.com/users/filter/2", {
+        const response = await fetch(`${baseUrl}/users/filter/2`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -59,7 +60,7 @@ const AdminTourForm = ({ onSubmit, tourToEdit, clearEdit }) => {
     const fetchRoutes = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch("https://ie402-backend.onrender.com/routes/get-all-routes", {
+        const response = await fetch(`${baseUrl}/routes/get-all-routes`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -104,7 +105,7 @@ const AdminTourForm = ({ onSubmit, tourToEdit, clearEdit }) => {
         const formData = new FormData();
         formData.append("image", avatar);
 
-        const response = await fetch("https://ie402-backend.onrender.com/upload", {
+        const response = await fetch(`${baseUrl}/upload`, {
           method: "POST",
           body: formData,
         });
@@ -132,7 +133,7 @@ const AdminTourForm = ({ onSubmit, tourToEdit, clearEdit }) => {
 
       const token = localStorage.getItem("token");
 
-      const response = await fetch("https://ie402-backend.onrender.com/tours/create-tour", {
+      const response = await fetch(`${baseUrl}/tours/create-tour`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
