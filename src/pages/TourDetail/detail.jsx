@@ -90,7 +90,7 @@ const Detail = () => {
     }, [id]);
 
     useEffect(() => {
-        if (destinations.length > 0) {
+        if (destinations.length > 0 && document.getElementById("arcgis-map")) {
             loadMap();
         }
     }, [destinations]);
