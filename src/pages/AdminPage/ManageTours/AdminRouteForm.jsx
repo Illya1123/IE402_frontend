@@ -34,6 +34,24 @@ const AdminRouteForm = ({ onSubmit, routeToEdit, clearEdit }) => {
     fetchDestinations();
   }, []);
 
+  useEffect(() => {
+    if (route.startLocationId && route.endLocationId) {
+      const startDestination = destinations.find(
+        (destination) => destination.id === route.startLocationId
+      );
+      const endDestination = destinations.find(
+        (destination) => destination.id === route.endLocationId
+      );
+
+      if (startDestination && endDestination) {
+        setRoute((prevRoute) => ({
+          ...prevRoute,
+          name: `${startDestination.name} - ${endDestination.name}`,
+        }));
+      }
+    }
+  }, [route.startLocationId, route.endLocationId, destinations]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setRoute({ ...route, [name]: value });
@@ -146,7 +164,7 @@ const AdminRouteForm = ({ onSubmit, routeToEdit, clearEdit }) => {
           placeholder="Tên Tuyến Đường"
           value={route.name}
           onChange={handleChange}
-          required
+          disabled
         />
 
         <input

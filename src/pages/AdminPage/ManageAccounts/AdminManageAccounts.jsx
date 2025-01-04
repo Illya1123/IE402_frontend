@@ -58,12 +58,11 @@ const AdminManageAccounts = () => {
   };
 
   return (
-    <div className="flex h-[1000px]">
-      <div className="h-screen w-1/4">
+    <div className="flex min-h-screen">
+      <div className="w-1/4 h-screen sticky top-0">
         <AdminPanel />
       </div>
-      <div className="w-3/4 h-screen flex-1 text-start text-xl space-y-4">
-        <h1 className="text-2xl font-bold text-gray-800 mb-6">Quản lý tài khoản</h1>
+      <div className="flex-1 p-4 bg-gray-100 overflow-auto">
         <AdminAccountForm
           onSubmit={addOrUpdateAccount}
           accountToEdit={accountToEdit}

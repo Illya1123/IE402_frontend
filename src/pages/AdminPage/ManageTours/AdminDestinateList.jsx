@@ -52,8 +52,6 @@ const AdminDestinateList = ({ onEdit, onDelete }) => {
               <th className="py-3 px-4 text-center">Giờ Mở Cửa</th>
               <th className="py-3 px-4 text-center">Giờ Đóng Cửa</th>
               <th className="py-3 px-4 text-center">Đánh Giá</th>
-              <th className="py-3 px-4 text-center">Vĩ Độ</th>
-              <th className="py-3 px-4 text-center">Kinh Độ</th>
               <th className="py-3 px-4 text-center">Hành Động</th>
             </tr>
           </thead>
@@ -65,8 +63,6 @@ const AdminDestinateList = ({ onEdit, onDelete }) => {
                 <td className="py-3 px-4 text-center">{destination.openHour}</td>
                 <td className="py-3 px-4 text-center">{destination.closeHour}</td>
                 <td className="py-3 px-4 text-center">{destination.rate}</td>
-                <td className="py-3 px-4 text-center">{destination.latitude}</td>
-                <td className="py-3 px-4 text-center">{destination.longitude}</td>
                 <td className="py-3 px-4 text-center">
                   <button
                     onClick={() => onEdit(destination)}

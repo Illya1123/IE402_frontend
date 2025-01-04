@@ -220,14 +220,45 @@ const AdminTourForm = ({ onSubmit, tourToEdit, clearEdit }) => {
             </option>
           ))}
         </select>
-        <input
-          type="text"
-          name="tourName"
-          placeholder="Tên Tour"
-          value={tour.tourName}
-          onChange={handleChange}
-          required
-        />
+
+        <div className="grid grid-cols-2 gap-4">
+          <input
+            type="text"
+            name="tourName"
+            placeholder="Tên Tour"
+            value={tour.tourName}
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="text"
+            name="tourType"
+            placeholder="Loại Tour"
+            value={tour.tourType}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="grid grid-cols-2 gap-4">
+          <input
+            type="number"
+            name="price"
+            placeholder="Giá tiền"
+            value={tour.price}
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="number"
+            name="limitOfNumOfGuest"
+            placeholder="Số lượng khách tối đa"
+            value={tour.limitOfNumOfGuest}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
         <input
           type="date"
           name="startDate"
@@ -245,14 +276,6 @@ const AdminTourForm = ({ onSubmit, tourToEdit, clearEdit }) => {
           required
         />
         <input
-          type="number"
-          name="price"
-          placeholder="Giá tiền"
-          value={tour.price}
-          onChange={handleChange}
-          required
-        />
-        <input
           type="text"
           name="description"
           placeholder="Mô tả"
@@ -260,22 +283,7 @@ const AdminTourForm = ({ onSubmit, tourToEdit, clearEdit }) => {
           onChange={handleChange}
           required
         />
-        <input
-          type="number"
-          name="limitOfNumOfGuest"
-          placeholder="Số lượng khách tối đa"
-          value={tour.limitOfNumOfGuest}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="text"
-          name="tourType"
-          placeholder="Loại Tour"
-          value={tour.tourType}
-          onChange={handleChange}
-          required
-        />
+
         <button
           type="submit"
           className="bg-slate-950 px-2.5 py-1.5 border-2 border-solid border-transparent focus:outline-none transition-shadow duration-300 ease-[cubic-bezier(0.075,_0.82,_0.165,_1)]"
@@ -283,7 +291,7 @@ const AdminTourForm = ({ onSubmit, tourToEdit, clearEdit }) => {
           {tourToEdit ? "Cập nhật" : "Thêm"} Tour
         </button>
       </form>
-      
+
       <div className="w-48 h-48 bg-gray-200 border border-gray-300 rounded-md flex justify-center items-center">
         {avatar ? (
           <img

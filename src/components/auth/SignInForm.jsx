@@ -10,7 +10,7 @@ import { signin } from "../../api";
 const SignInForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate(); 
-  const isLogin = useSelector(state => state.isLogin); // Giả sử bạn lưu trạng thái đăng nhập trong `isLogin`
+  const isLogin = useSelector(state => state.isLogin);
 
   const formik = useFormik({
     initialValues: {
@@ -64,7 +64,6 @@ const SignInForm = () => {
     },
   });
 
-  // Hiển thị thông báo đã đăng nhập hoặc form đăng nhập
   return (
     <div>
       {isLogin ? (
@@ -75,7 +74,7 @@ const SignInForm = () => {
       ) : (
         <div className="form-container">
           <form className="infoform" onSubmit={formik.handleSubmit}>
-            <h1>Đăng nhập</h1>
+            <h1 className="text-xl font-bold text-center mb-4">Đăng nhập</h1>
             <label> Địa chỉ email </label>
             <input
               type="email"

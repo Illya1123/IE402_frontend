@@ -51,7 +51,6 @@ const SignupForm = () => {
       try {
         let avatarUrl = null;
 
-        // Step 1: Upload the avatar first, if available
         if (avatar) {
           const avatarData = new FormData();
           avatarData.append("avatar", avatar);
@@ -69,7 +68,6 @@ const SignupForm = () => {
           }
         }
 
-        // Step 2: Create data object for signup
         const data = {
           userType: "1", // Customer type
           firstName: values.firstName,
@@ -80,10 +78,9 @@ const SignupForm = () => {
           confirmPassword: values.confirmPassword,
           birthdate: values.birthdate,
           address: values.address,
-          avatar: avatarUrl, // Include avatar URL if uploaded
+          avatar: avatarUrl,
         };
 
-        // Step 3: Submit the signup data
         const response = await signup(data);
 
         if (response.status === "success") {
@@ -94,7 +91,7 @@ const SignupForm = () => {
             confirmButtonText: "OK",
           });
           formik.resetForm();
-          setAvatar(null); // Reset avatar after successful registration
+          setAvatar(null);
         }
       } catch (error) {
         Swal.fire({
@@ -108,33 +105,41 @@ const SignupForm = () => {
   });
 
   const handleAvatarChange = (e) => {
-    setAvatar(e.target.files[0]); // Update avatar file when user selects a file
+    setAvatar(e.target.files[0]);
   };
 
   return (
     <div className="form-container">
       <form className="infoform" onSubmit={formik.handleSubmit} encType="multipart/form-data">
-        <h1>Đăng ký</h1>
+        <h1 className="text-xl font-bold text-center mb-4">Đăng ký</h1>
 
-        <label>Tên</label>
-        <input
-          type="text"
-          name="firstName"
-          value={formik.values.firstName}
-          onChange={formik.handleChange}
-          placeholder="Enter your first name"
-        />
-        {formik.errors.firstName && <p className="errorMsg">{formik.errors.firstName}</p>}
+        <div className="flex space-x-4 mb-4">
+        <div className="w-1/2">
+            <label>Họ và tên đệm</label>
+            <input
+              type="text"
+              name="lastName"
+              value={formik.values.lastName}
+              onChange={formik.handleChange}
+              placeholder="Enter your last name"
+              className="input-field"
+            />
+            {formik.errors.lastName && <p className="errorMsg">{formik.errors.lastName}</p>}
+          </div>
 
-        <label>Họ và tên đệm</label>
-        <input
-          type="text"
-          name="lastName"
-          value={formik.values.lastName}
-          onChange={formik.handleChange}
-          placeholder="Enter your last name"
-        />
-        {formik.errors.lastName && <p className="errorMsg">{formik.errors.lastName}</p>}
+          <div className="w-1/2">
+            <label>Tên</label>
+            <input
+              type="text"
+              name="firstName"
+              value={formik.values.firstName}
+              onChange={formik.handleChange}
+              placeholder="Enter your first name"
+              className="input-field"
+            />
+            {formik.errors.firstName && <p className="errorMsg">{formik.errors.firstName}</p>}
+          </div>
+        </div>
 
         <label>Địa chỉ email</label>
         <input
@@ -146,62 +151,82 @@ const SignupForm = () => {
         />
         {formik.errors.email && <p className="errorMsg">{formik.errors.email}</p>}
 
-        <label>Số điện thoại</label>
-        <input
-          type="text"
-          name="sdt"
-          value={formik.values.sdt}
-          onChange={formik.handleChange}
-          placeholder="Enter your phone number"
-        />
-        {formik.errors.sdt && <p className="errorMsg">{formik.errors.sdt}</p>}
+        <div className="flex space-x-4 mb-4">
+          <div className="w-1/2">
+            <label>Số điện thoại</label>
+            <input
+              type="text"
+              name="sdt"
+              value={formik.values.sdt}
+              onChange={formik.handleChange}
+              placeholder="Enter your phone number"
+              className="input-field"
+            />
+            {formik.errors.sdt && <p className="errorMsg">{formik.errors.sdt}</p>}
+          </div>
+          <div className="w-1/2">
+            <label>Ngày sinh</label>
+            <input
+              type="date"
+              name="birthdate"
+              value={formik.values.birthdate}
+              onChange={formik.handleChange}
+              className="input-field"
+            />
+            {formik.errors.birthdate && <p className="errorMsg">{formik.errors.birthdate}</p>}
+          </div>
+        </div>
 
-        <label>Ngày sinh</label>
-        <input
-          type="date"
-          name="birthdate"
-          value={formik.values.birthdate}
-          onChange={formik.handleChange}
-        />
-        {formik.errors.birthdate && <p className="errorMsg">{formik.errors.birthdate}</p>}
+        <div className="mb-4">
+          <label>Địa chỉ</label>
+          <input
+            type="text"
+            name="address"
+            value={formik.values.address}
+            onChange={formik.handleChange}
+            placeholder="Enter your address"
+            className="input-field"
+          />
+          {formik.errors.address && <p className="errorMsg">{formik.errors.address}</p>}
+        </div>
 
-        <label>Địa chỉ</label>
-        <input
-          type="text"
-          name="address"
-          value={formik.values.address}
-          onChange={formik.handleChange}
-          placeholder="Enter your address"
-        />
-        {formik.errors.address && <p className="errorMsg">{formik.errors.address}</p>}
+        <div className="flex space-x-4 mb-4">
+          <div className="w-1/2">
+            <label>Mật khẩu</label>
+            <input
+              type="password"
+              name="password"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              placeholder="Enter your password"
+              className="input-field"
+            />
+            {formik.errors.password && <p className="errorMsg">{formik.errors.password}</p>}
+          </div>
+          <div className="w-1/2">
+            <label>Xác nhận mật khẩu</label>
+            <input
+              type="password"
+              name="confirmPassword"
+              value={formik.values.confirmPassword}
+              onChange={formik.handleChange}
+              placeholder="Confirm your password"
+              className="input-field"
+            />
+            {formik.errors.confirmPassword && <p className="errorMsg">{formik.errors.confirmPassword}</p>}
+          </div>
+        </div>
 
-        <label>Mật khẩu</label>
-        <input
-          type="password"
-          name="password"
-          value={formik.values.password}
-          onChange={formik.handleChange}
-          placeholder="Enter your password"
-        />
-        {formik.errors.password && <p className="errorMsg">{formik.errors.password}</p>}
-
-        <label>Xác nhận mật khẩu</label>
-        <input
-          type="password"
-          name="confirmPassword"
-          value={formik.values.confirmPassword}
-          onChange={formik.handleChange}
-          placeholder="Confirm your password"
-        />
-        {formik.errors.confirmPassword && <p className="errorMsg">{formik.errors.confirmPassword}</p>}
-
-        <label>Ảnh đại diện</label>
-        <input
-          type="file"
-          name="avatar"
-          accept="image/*"
-          onChange={handleAvatarChange}
-        />
+        <div className="mb-4">
+          <label>Ảnh đại diện</label>
+          <input
+            type="file"
+            name="avatar"
+            accept="image/*"
+            onChange={handleAvatarChange}
+            className="input-field"
+          />
+        </div>
 
         <button
           type="submit"

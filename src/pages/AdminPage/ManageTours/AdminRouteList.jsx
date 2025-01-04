@@ -49,10 +49,6 @@ const AdminRouteList = ({ onEdit, onDelete }) => {
             <tr className="bg-gray-200">
               <th className="py-3 px-4 text-left">Tên Tuyến Đường</th>
               <th className="py-3 px-4 text-left">Mô Tả</th>
-              <th className="py-3 px-4 text-center">Vĩ Độ Bắt Đầu</th>
-              <th className="py-3 px-4 text-center">Kinh Độ Bắt Đầu</th>
-              <th className="py-3 px-4 text-center">Vĩ Độ Kết Thúc</th>
-              <th className="py-3 px-4 text-center">Kinh Độ Kết Thúc</th>
               <th className="py-3 px-4 text-center">Chiều Dài (km)</th>
               <th className="py-3 px-4 text-center">Hành Động</th>
             </tr>
@@ -62,10 +58,6 @@ const AdminRouteList = ({ onEdit, onDelete }) => {
               <tr key={route.id} className="border-b">
                 <td className="py-3 px-4">{route.name}</td>
                 <td className="py-3 px-4">{route.description}</td>
-                <td className="py-3 px-4 text-center">{route.startLatitude}</td>
-                <td className="py-3 px-4 text-center">{route.startLongitude}</td>
-                <td className="py-3 px-4 text-center">{route.endLatitude}</td>
-                <td className="py-3 px-4 text-center">{route.endLongitude}</td>
                 <td className="py-3 px-4 text-center">{parseFloat(route.length).toFixed(1)}</td>
                 <td className="py-3 px-4 text-center">
                   <button

@@ -30,7 +30,7 @@ const getAllTickets = async () => {
 
 const getAllCustomers = async () => {
   try {
-    const response = await axios.get(`${baseUrl}/customers/getAll`);
+    const response = await axios.get(`${baseUrl}/users/getUser/1`);
     return response.data;
   } catch (error) {
     console.error(

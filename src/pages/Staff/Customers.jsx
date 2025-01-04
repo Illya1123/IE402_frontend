@@ -19,7 +19,7 @@ const Customers = () => {
   const [filteredData, setFilteredData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   // // For table functions
-  const headers = ["Tên khách hàng", "Số điện thoại", "Địa chỉ", "Đánh giá"]; // Table Columns Header
+  const headers = ["Tên khách hàng", "Số điện thoại", "Địa chỉ"]; // Table Columns Header
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" }); // Table Columns Header Sorting A-Z and Z-A
   const [selectedRows, setSelectedRows] = useState({}); // Track selected rows
   const [dropdownValue, setDropdownValue] = useState("");
@@ -41,10 +41,10 @@ const Customers = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const existedCustomers = await getAllCustomers(); // Uncomment this when finish backend
-        // const existedCustomers = customersData; // Delete this when finish backend
-        if (existedCustomers.length !== 0) {
-          setcustomerData(existedCustomers.data);
+        const response = await getAllCustomers(); // Gọi API
+        if (response.status === "success" && response.data.rows.length !== 0) {
+          console.log("Fetched Data:", response.data.rows);
+          setcustomerData(response.data.rows); // Sử dụng `rows`
         } else {
           setcustomerData([]);
           console.log("No Data Fetched");
@@ -55,6 +55,7 @@ const Customers = () => {
     };
     fetchData();
   }, []);
+  
 
   // // For filtering data based on the search term
   useEffect(() => {
@@ -182,35 +183,32 @@ const Customers = () => {
               </tr>
             </thead>
             <tbody>
-              {paginatedData.map((row) => (
-                <tr key={row.id} className="hover:bg-yellow-50">
-                  <td
-                    className={`border-b-2 border-b-gray-200 p-2 py-4 text-center ${
-                      selectedRows[row.id] ? "bg-yellow-100" : ""
-                    }`}
-                  >
-                    <input
-                      type="checkbox"
-                      className="h-4 w-4 hover:cursor-pointer"
-                      checked={selectedRows[row.id] || false}
-                      onChange={() => handleRowSelect(row.id)}
-                    />
-                  </td>
-                  {Object.entries(row)
-                    .filter(([key]) => key !== "id")
-                    .map(([key, value]) => (
-                      <td
-                        key={key}
-                        className={`border-b-2 border-b-gray-200 p-2 py-4 text-center ${
-                          row.column4 > 3.0 ? "text-green-500" : "text-red-500"
-                        } ${selectedRows[row.id] ? "bg-yellow-100" : ""}`}
-                      >
-                        {value}
-                      </td>
-                    ))}
-                </tr>
-              ))}
-            </tbody>
+            {paginatedData.map((row) => (
+              <tr key={row.id} className="hover:bg-yellow-50">
+                <td
+                  className={`border-b-2 border-b-gray-200 p-2 py-4 text-center ${
+                    selectedRows[row.id] ? "bg-yellow-100" : ""
+                  }`}
+                >
+                  <input
+                    type="checkbox"
+                    className="h-4 w-4 hover:cursor-pointer"
+                    checked={selectedRows[row.id] || false}
+                    onChange={() => handleRowSelect(row.id)}
+                  />
+                </td>
+                <td className="border-b-2 border-b-gray-200 p-2 py-4 text-center">
+                  {`${row.lastName} ${row.firstName}`}
+                </td>
+                <td className="border-b-2 border-b-gray-200 p-2 py-4 text-center">
+                  {row.sdt}
+                </td>
+                <td className="border-b-2 border-b-gray-200 p-2 py-4 text-center">
+                  {row.extraInfo?.address || "Không có địa chỉ"}
+                </td>
+              </tr>
+            ))}
+          </tbody>;
           </table>
           {/* Pagination */}
           <div className="mt-4 flex justify-center">

@@ -2,12 +2,12 @@ import axios from 'axios';
 
 // online: https://ie402-backend.onrender.com
 // local: http://localhost:5000
-const baseUrl = `https://ie402-backend.onrender.com`
+const baseUrl = `http://localhost:5000`
 
 const signup = async (param) => {
   // Tạo object data với các trường bắt buộc
   const data = {
-    userType: "1",
+    userType: param.userType,
     firstName: param.firstName,
     lastName: param.lastName,
     email: param.email,

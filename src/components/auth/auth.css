@@ -57,3 +57,35 @@ button {
     background-color: rgb(7, 140, 248);
     cursor: pointer;
 }
+
+.name-fields,
+.password-fields,
+.birthdate-language-fields {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+  }
+
+.name-field,
+.password-field,
+.birthdate-field,
+.language-field {
+    flex: 1;
+  }
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="password"],
+select {
+  width: 100%;
+}
+
+button {
+  margin-top: 20px;
+}
+
+.errorMsg {
+  color: red;
+  font-size: 12px;
+}

@@ -36,7 +36,6 @@ const AdminManageRoutes = () => {
             </div>
 
             <div className="w-3/4 flex-1 p-6">
-                <h1 className="text-2xl font-bold text-gray-800 mb-6">Quản lý tour</h1>
 
                 <AdminRouteForm
                     onSubmit={addOrUpdateTour}
