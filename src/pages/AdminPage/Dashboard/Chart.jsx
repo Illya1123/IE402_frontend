@@ -11,7 +11,15 @@ import {
   Legend,
 } from "chart.js";
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+);
 
 const Chart = () => {
   const data = {
@@ -37,8 +45,10 @@ const Chart = () => {
   };
 
   return (
-    <div className="p-4 bg-white rounded-lg shadow-md">
-      <h3 className="text-lg font-bold text-gray-800 mb-4">Doanh thu tổng quan</h3>
+    <div className="rounded-lg bg-white p-4 shadow-md">
+      <h3 className="mb-4 text-lg font-bold text-gray-800">
+        Doanh thu tổng quan
+      </h3>
       <Line data={data} options={options} />
     </div>
   );

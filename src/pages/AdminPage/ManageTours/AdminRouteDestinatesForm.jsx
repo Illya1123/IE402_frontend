@@ -42,14 +42,17 @@ const AdminRouteDestinatesForm = () => {
       const token = localStorage.getItem("token");
       const payload = { route_id: selectedRouteId };
 
-      const response = await fetch(`${baseUrl}/routes/${selectedRouteId}/destinations`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
+      const response = await fetch(
+        `${baseUrl}/routes/${selectedRouteId}/destinations`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
         },
-        body: JSON.stringify(payload),
-      });
+      );
 
       console.log("API Response:", response);
 
@@ -79,10 +82,12 @@ const AdminRouteDestinatesForm = () => {
     <div className="flex justify-center gap-2">
       <form
         onSubmit={handleSubmit}
-        className="grid gap-6 bg-gray-100 p-12 m-4 rounded-lg shadow-lg border-t border-l border-r border-b border-gray-200"
+        className="m-4 grid gap-6 rounded-lg border-b border-l border-r border-t border-gray-200 bg-gray-100 p-12 shadow-lg"
         style={{ transform: "scale(1)" }}
       >
-        <h2 className="text-xl font-bold text-center mb-4">Thêm Địa Điểm Vào Tuyến Đường</h2>
+        <h2 className="mb-4 text-center text-xl font-bold">
+          Thêm Địa Điểm Vào Tuyến Đường
+        </h2>
 
         <select
           name="route"
@@ -100,7 +105,7 @@ const AdminRouteDestinatesForm = () => {
 
         <button
           type="submit"
-          className="bg-slate-950 px-2.5 py-1.5 border-2 border-solid border-transparent focus:outline-none transition-shadow duration-300 ease-[cubic-bezier(0.075,_0.82,_0.165,_1)]"
+          className="border-2 border-solid border-transparent bg-slate-950 px-2.5 py-1.5 transition-shadow duration-300 ease-[cubic-bezier(0.075,_0.82,_0.165,_1)] focus:outline-none"
         >
           Gửi Dữ Liệu
         </button>

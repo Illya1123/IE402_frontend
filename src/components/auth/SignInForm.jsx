@@ -4,13 +4,17 @@ import Swal from "sweetalert2";
 import "./auth.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setCurrentUserAction, setCurrentUserName, setCurrentUserIsLogin } from "../../store/actions/index";
+import {
+  setCurrentUserAction,
+  setCurrentUserName,
+  setCurrentUserIsLogin,
+} from "../../store/actions/index";
 import { signin } from "../../api";
 
 const SignInForm = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate(); 
-  const isLogin = useSelector(state => state.isLogin);
+  const navigate = useNavigate();
+  const isLogin = useSelector((state) => state.isLogin);
 
   const formik = useFormik({
     initialValues: {
@@ -22,13 +26,13 @@ const SignInForm = () => {
         .required("Bắt buộc")
         .matches(
           /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
-          "Hãy nhập đúng định dạng email"
+          "Hãy nhập đúng định dạng email",
         ),
       password: Yup.string()
         .required("Bắt buộc")
         .matches(
           /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d][A-Za-z\d!@#$%^&*()_+]{8,19}$/,
-          "Mật khẩu phải chứa ít nhất 8 ký tự, một chữ cái, một số và một ký tự đặc biệt"
+          "Mật khẩu phải chứa ít nhất 8 ký tự, một chữ cái, một số và một ký tự đặc biệt",
         ),
     }),
     onSubmit: async (values) => {
@@ -41,16 +45,16 @@ const SignInForm = () => {
             icon: "success",
             confirmButtonText: "OK",
           }).then(() => {
-            navigate("/");            
+            navigate("/");
             window.location.reload();
           });
           dispatch(setCurrentUserAction(response.token));
           dispatch(setCurrentUserName(response.account_name));
           dispatch(setCurrentUserIsLogin(true));
-          localStorage.setItem('token', response.token);
-          localStorage.setItem('account_name', response.account_name);
-          localStorage.setItem('account_id', response.user_id);
-          localStorage.setItem('user_type', response.user_type);
+          localStorage.setItem("token", response.token);
+          localStorage.setItem("account_name", response.account_name);
+          localStorage.setItem("account_id", response.user_id);
+          localStorage.setItem("user_type", response.user_type);
           formik.resetForm();
         }
       } catch (error) {
@@ -74,7 +78,7 @@ const SignInForm = () => {
       ) : (
         <div className="form-container">
           <form className="infoform" onSubmit={formik.handleSubmit}>
-            <h1 className="text-xl font-bold text-center mb-4">Đăng nhập</h1>
+            <h1 className="mb-4 text-center text-xl font-bold">Đăng nhập</h1>
             <label> Địa chỉ email </label>
             <input
               type="email"

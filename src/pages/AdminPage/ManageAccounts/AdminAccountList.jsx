@@ -20,7 +20,9 @@ const AdminAccountList = ({ accounts, onEdit, onDelete }) => {
     (acc) =>
       acc.firstName.toLowerCase().includes(search.toLowerCase()) ||
       acc.email.toLowerCase().includes(search.toLowerCase()) ||
-      mapUserTypeToRole(acc.userType).toLowerCase().includes(search.toLowerCase())
+      mapUserTypeToRole(acc.userType)
+        .toLowerCase()
+        .includes(search.toLowerCase()),
   );
 
   return (
@@ -30,35 +32,39 @@ const AdminAccountList = ({ accounts, onEdit, onDelete }) => {
         placeholder="Tìm kiếm..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        className="border p-2 mb-4 w-full rounded-md"
+        className="mb-4 w-full rounded-md border p-2"
       />
-      <div className="max-h-60 overflow-y-auto rounded-lg shadow-md border border-gray-300">
+      <div className="max-h-60 overflow-y-auto rounded-lg border border-gray-300 shadow-md">
         <table className="min-w-full table-auto bg-white">
-          <thead className="bg-gray-200 sticky top-0 z-10">
+          <thead className="sticky top-0 z-10 bg-gray-200">
             <tr>
-              <th className="py-3 px-4 text-left">Tên Tài Khoản</th>
-              <th className="py-3 px-4 text-left">Email</th>
-              <th className="py-3 px-4 text-left">Vai trò</th>
-              <th className="py-3 px-4 text-center">Hành Động</th>
+              <th className="px-4 py-3 text-left">Tên Tài Khoản</th>
+              <th className="px-4 py-3 text-left">Email</th>
+              <th className="px-4 py-3 text-left">Vai trò</th>
+              <th className="px-4 py-3 text-center">Hành Động</th>
             </tr>
           </thead>
           <tbody>
             {filteredAccounts.length > 0 ? (
               filteredAccounts.map((account) => (
                 <tr key={account.id} className="border-b">
-                  <td className="py-3 px-4">{account.lastName} {account.firstName}</td>
-                  <td className="py-3 px-4">{account.email}</td>
-                  <td className="py-3 px-4">{mapUserTypeToRole(account.userType)}</td>
-                  <td className="py-3 px-4 text-center">
+                  <td className="px-4 py-3">
+                    {account.lastName} {account.firstName}
+                  </td>
+                  <td className="px-4 py-3">{account.email}</td>
+                  <td className="px-4 py-3">
+                    {mapUserTypeToRole(account.userType)}
+                  </td>
+                  <td className="px-4 py-3 text-center">
                     <button
                       onClick={() => onEdit(account)}
-                      className="bg-yellow-500 text-white px-4 py-2 rounded-md"
+                      className="rounded-md bg-yellow-500 px-4 py-2 text-white"
                     >
                       Cập Nhật
                     </button>
                     <button
                       onClick={() => onDelete(account.id)}
-                      className="bg-red-500 text-white px-4 py-2 rounded-md ml-2"
+                      className="ml-2 rounded-md bg-red-500 px-4 py-2 text-white"
                     >
                       Xóa
                     </button>
@@ -67,7 +73,7 @@ const AdminAccountList = ({ accounts, onEdit, onDelete }) => {
               ))
             ) : (
               <tr>
-                <td colSpan="4" className="py-4 px-4 text-center text-gray-500">
+                <td colSpan="4" className="px-4 py-4 text-center text-gray-500">
                   Không có tài khoản nào phù hợp.
                 </td>
               </tr>

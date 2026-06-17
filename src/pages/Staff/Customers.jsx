@@ -55,7 +55,6 @@ const Customers = () => {
     };
     fetchData();
   }, []);
-  
 
   // // For filtering data based on the search term
   useEffect(() => {
@@ -183,32 +182,33 @@ const Customers = () => {
               </tr>
             </thead>
             <tbody>
-            {paginatedData.map((row) => (
-              <tr key={row.id} className="hover:bg-yellow-50">
-                <td
-                  className={`border-b-2 border-b-gray-200 p-2 py-4 text-center ${
-                    selectedRows[row.id] ? "bg-yellow-100" : ""
-                  }`}
-                >
-                  <input
-                    type="checkbox"
-                    className="h-4 w-4 hover:cursor-pointer"
-                    checked={selectedRows[row.id] || false}
-                    onChange={() => handleRowSelect(row.id)}
-                  />
-                </td>
-                <td className="border-b-2 border-b-gray-200 p-2 py-4 text-center">
-                  {`${row.lastName} ${row.firstName}`}
-                </td>
-                <td className="border-b-2 border-b-gray-200 p-2 py-4 text-center">
-                  {row.sdt}
-                </td>
-                <td className="border-b-2 border-b-gray-200 p-2 py-4 text-center">
-                  {row.extraInfo?.address || "Không có địa chỉ"}
-                </td>
-              </tr>
-            ))}
-          </tbody>;
+              {paginatedData.map((row) => (
+                <tr key={row.id} className="hover:bg-yellow-50">
+                  <td
+                    className={`border-b-2 border-b-gray-200 p-2 py-4 text-center ${
+                      selectedRows[row.id] ? "bg-yellow-100" : ""
+                    }`}
+                  >
+                    <input
+                      type="checkbox"
+                      className="h-4 w-4 hover:cursor-pointer"
+                      checked={selectedRows[row.id] || false}
+                      onChange={() => handleRowSelect(row.id)}
+                    />
+                  </td>
+                  <td className="border-b-2 border-b-gray-200 p-2 py-4 text-center">
+                    {`${row.lastName} ${row.firstName}`}
+                  </td>
+                  <td className="border-b-2 border-b-gray-200 p-2 py-4 text-center">
+                    {row.sdt}
+                  </td>
+                  <td className="border-b-2 border-b-gray-200 p-2 py-4 text-center">
+                    {row.extraInfo?.address || "Không có địa chỉ"}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+            ;
           </table>
           {/* Pagination */}
           <div className="mt-4 flex justify-center">
