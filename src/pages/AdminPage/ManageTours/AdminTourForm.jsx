@@ -182,9 +182,9 @@ const AdminTourForm = ({ onSubmit, tourToEdit, clearEdit }) => {
     <div className="flex gap-2">
       <form
         onSubmit={handleSubmit}
-        className="max-w-2xl relative grid gap-4 bg-gray-100 p-8 m-4 rounded-lg shadow-lg border-t border-l border-r border-b border-gray-200"
+        className="relative m-4 grid max-w-2xl gap-4 rounded-lg border-b border-l border-r border-t border-gray-200 bg-gray-100 p-8 shadow-lg"
       >
-        <h2 className="text-xl font-bold text-center mb-4">
+        <h2 className="mb-4 text-center text-xl font-bold">
           {tourToEdit ? "Cập nhật Tour" : "Thêm Tour Mới"}
         </h2>
         <input
@@ -286,18 +286,18 @@ const AdminTourForm = ({ onSubmit, tourToEdit, clearEdit }) => {
 
         <button
           type="submit"
-          className="bg-slate-950 px-2.5 py-1.5 border-2 border-solid border-transparent focus:outline-none transition-shadow duration-300 ease-[cubic-bezier(0.075,_0.82,_0.165,_1)]"
+          className="border-2 border-solid border-transparent bg-slate-950 px-2.5 py-1.5 transition-shadow duration-300 ease-[cubic-bezier(0.075,_0.82,_0.165,_1)] focus:outline-none"
         >
           {tourToEdit ? "Cập nhật" : "Thêm"} Tour
         </button>
       </form>
 
-      <div className="w-48 h-48 bg-gray-200 border border-gray-300 rounded-md flex justify-center items-center">
+      <div className="flex h-48 w-48 items-center justify-center rounded-md border border-gray-300 bg-gray-200">
         {avatar ? (
           <img
             src={URL.createObjectURL(avatar)}
             alt="Preview"
-            className="object-cover w-full h-full rounded-md"
+            className="h-full w-full rounded-md object-cover"
           />
         ) : (
           <span>Preview Image</span>

@@ -37,8 +37,8 @@ const AdminManageAccounts = () => {
     if (accountToEdit) {
       setAccounts(
         accounts.map((acc) =>
-          acc.id === accountToEdit.id ? { ...acc, ...account } : acc
-        )
+          acc.id === accountToEdit.id ? { ...acc, ...account } : acc,
+        ),
       );
     } else {
       setAccounts([
@@ -59,10 +59,10 @@ const AdminManageAccounts = () => {
 
   return (
     <div className="flex min-h-screen">
-      <div className="w-1/4 h-screen sticky top-0">
+      <div className="sticky top-0 h-screen w-1/4">
         <AdminPanel />
       </div>
-      <div className="flex-1 p-4 bg-gray-100 overflow-auto">
+      <div className="flex-1 overflow-auto bg-gray-100 p-4">
         <AdminAccountForm
           onSubmit={addOrUpdateAccount}
           accountToEdit={accountToEdit}

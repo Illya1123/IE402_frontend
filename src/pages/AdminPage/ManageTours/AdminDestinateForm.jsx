@@ -76,19 +76,21 @@ const AdminDestinateForm = ({ onSubmit, destinationToEdit, clearEdit }) => {
   };
 
   return (
-    <div className="flex gap-2 justify-center">
+    <div className="flex justify-center gap-2">
       <form
         onSubmit={handleSubmit}
-        className="relative grid gap-0 bg-gray-100 p-5 m-2 rounded-lg shadow-lg border-t border-l border-r border-b border-gray-200"
+        className="relative m-2 grid gap-0 rounded-lg border-b border-l border-r border-t border-gray-200 bg-gray-100 p-5 shadow-lg"
         style={{ transform: "scale(1)" }}
       >
-        <h2 className="text-xl font-bold text-center mb-2">
+        <h2 className="mb-2 text-center text-xl font-bold">
           {destinationToEdit ? "Cập nhật Địa Điểm" : "Thêm Địa Điểm Mới"}
         </h2>
 
         {/* Destination Name */}
         <div>
-          <label className="block text-sm font-medium text-gray-700">Tên Địa Điểm</label>
+          <label className="block text-sm font-medium text-gray-700">
+            Tên Địa Điểm
+          </label>
           <input
             type="text"
             name="name"
@@ -96,13 +98,15 @@ const AdminDestinateForm = ({ onSubmit, destinationToEdit, clearEdit }) => {
             value={destination.name}
             onChange={handleChange}
             required
-            className="w-full p-2 mt-1 border border-gray-300 rounded-md"
+            className="mt-1 w-full rounded-md border border-gray-300 p-2"
           />
         </div>
 
         {/* Description */}
         <div>
-          <label className="block text-sm font-medium text-gray-700">Mô tả</label>
+          <label className="block text-sm font-medium text-gray-700">
+            Mô tả
+          </label>
           <input
             type="text"
             name="description"
@@ -110,14 +114,16 @@ const AdminDestinateForm = ({ onSubmit, destinationToEdit, clearEdit }) => {
             value={destination.description}
             onChange={handleChange}
             required
-            className="w-full p-2 mt-1 border border-gray-300 rounded-md"
+            className="mt-1 w-full rounded-md border border-gray-300 p-2"
           />
         </div>
 
         {/* Open and Close Hours on the same row */}
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700">Giờ Mở Cửa</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Giờ Mở Cửa
+            </label>
             <input
               type="time"
               name="openHour"
@@ -125,12 +131,14 @@ const AdminDestinateForm = ({ onSubmit, destinationToEdit, clearEdit }) => {
               value={destination.openHour}
               onChange={handleChange}
               required
-              className="w-full p-2 mt-1 border border-gray-300 rounded-md"
+              className="mt-1 w-full rounded-md border border-gray-300 p-2"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">Giờ Đóng Cửa</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Giờ Đóng Cửa
+            </label>
             <input
               type="time"
               name="closeHour"
@@ -138,14 +146,16 @@ const AdminDestinateForm = ({ onSubmit, destinationToEdit, clearEdit }) => {
               value={destination.closeHour}
               onChange={handleChange}
               required
-              className="w-full p-2 mt-1 border border-gray-300 rounded-md"
+              className="mt-1 w-full rounded-md border border-gray-300 p-2"
             />
           </div>
         </div>
 
         {/* Rate */}
         <div>
-          <label className="block text-sm font-medium text-gray-700">Đánh Giá</label>
+          <label className="block text-sm font-medium text-gray-700">
+            Đánh Giá
+          </label>
           <input
             type="number"
             name="rate"
@@ -156,14 +166,16 @@ const AdminDestinateForm = ({ onSubmit, destinationToEdit, clearEdit }) => {
             min="0"
             max="5"
             step="1"
-            className="w-full p-2 mt-1 border border-gray-300 rounded-md"
+            className="mt-1 w-full rounded-md border border-gray-300 p-2"
           />
         </div>
 
         {/* Latitude and Longitude on the same row */}
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700">Latitude</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Latitude
+            </label>
             <input
               type="text"
               name="latitude"
@@ -171,12 +183,14 @@ const AdminDestinateForm = ({ onSubmit, destinationToEdit, clearEdit }) => {
               value={destination.latitude}
               onChange={handleChange}
               required
-              className="w-full p-2 mt-1 border border-gray-300 rounded-md"
+              className="mt-1 w-full rounded-md border border-gray-300 p-2"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">Longitude</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Longitude
+            </label>
             <input
               type="text"
               name="longitude"
@@ -184,14 +198,14 @@ const AdminDestinateForm = ({ onSubmit, destinationToEdit, clearEdit }) => {
               value={destination.longitude}
               onChange={handleChange}
               required
-              className="w-full p-2 mt-1 border border-gray-300 rounded-md"
+              className="mt-1 w-full rounded-md border border-gray-300 p-2"
             />
           </div>
         </div>
 
         <button
           type="submit"
-          className="bg-slate-950 px-2.5 py-1 border-2 border-solid border-transparent focus:outline-none transition-shadow duration-300 ease-[cubic-bezier(0.075,_0.82,_0.165,_1)]"
+          className="border-2 border-solid border-transparent bg-slate-950 px-2.5 py-1 transition-shadow duration-300 ease-[cubic-bezier(0.075,_0.82,_0.165,_1)] focus:outline-none"
         >
           {destinationToEdit ? "Cập nhật" : "Thêm"} Địa Điểm
         </button>

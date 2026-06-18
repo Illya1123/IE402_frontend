@@ -47,7 +47,7 @@ const AdminAccountForm = ({ onSubmit, accountToEdit, clearEdit }) => {
         .required("Bắt buộc")
         .matches(
           /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
-          "Hãy nhập đúng định dạng email"
+          "Hãy nhập đúng định dạng email",
         ),
       firstName: Yup.string().required("Bắt buộc"),
       lastName: Yup.string().required("Bắt buộc"),
@@ -58,7 +58,7 @@ const AdminAccountForm = ({ onSubmit, accountToEdit, clearEdit }) => {
         .required("Bắt buộc")
         .matches(
           /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d][A-Za-z\d!@#$%^&*()_+]{8,19}$/,
-          "Mật khẩu phải chứa ít nhất 8 ký tự, một chữ cái, một số và một ký tự đặc biệt"
+          "Mật khẩu phải chứa ít nhất 8 ký tự, một chữ cái, một số và một ký tự đặc biệt",
         ),
       confirmPassword: Yup.string()
         .required("Bắt buộc")
@@ -75,13 +75,10 @@ const AdminAccountForm = ({ onSubmit, accountToEdit, clearEdit }) => {
           const avatarData = new FormData();
           avatarData.append("avatar", avatar);
 
-          const avatarResponse = await fetch(
-            `${baseUrl}/upload-avatar`,
-            {
-              method: "POST",
-              body: avatarData,
-            }
-          );
+          const avatarResponse = await fetch(`${baseUrl}/upload-avatar`, {
+            method: "POST",
+            body: avatarData,
+          });
           const avatarResult = await avatarResponse.json();
 
           if (avatarResult.avatarUrl) {
@@ -112,7 +109,8 @@ const AdminAccountForm = ({ onSubmit, accountToEdit, clearEdit }) => {
         Swal.fire({
           title: "Lỗi!",
           text:
-            error.response?.data?.message || "Đã xảy ra lỗi khi thêm tài khoản.",
+            error.response?.data?.message ||
+            "Đã xảy ra lỗi khi thêm tài khoản.",
           icon: "error",
           confirmButtonText: "OK",
         });
@@ -131,7 +129,9 @@ const AdminAccountForm = ({ onSubmit, accountToEdit, clearEdit }) => {
         onSubmit={formik.handleSubmit}
         encType="multipart/form-data"
       >
-        <h1 className="text-xl font-bold text-center">{accountToEdit ? "Cập nhật Tài Khoản" : "Thêm Tài Khoản"}</h1>
+        <h1 className="text-center text-xl font-bold">
+          {accountToEdit ? "Cập nhật Tài Khoản" : "Thêm Tài Khoản"}
+        </h1>
 
         <label>Loại Người Dùng</label>
         <select

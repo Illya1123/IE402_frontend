@@ -31,15 +31,17 @@ const SignupForm = () => {
         .required("Bắt buộc")
         .matches(
           /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
-          "Hãy nhập đúng định dạng email"
+          "Hãy nhập đúng định dạng email",
         ),
-      sdt: Yup.string()
-        .matches(/^\d{10}$/, "Số điện thoại phải là 10 ký tự số"),
+      sdt: Yup.string().matches(
+        /^\d{10}$/,
+        "Số điện thoại phải là 10 ký tự số",
+      ),
       password: Yup.string()
         .required("Bắt buộc")
         .matches(
           /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d][A-Za-z\d!@#$%^&*()_+]{8,19}$/,
-          "Mật khẩu phải chứa ít nhất 8 ký tự, một chữ cái, một số và một ký tự đặc biệt"
+          "Mật khẩu phải chứa ít nhất 8 ký tự, một chữ cái, một số và một ký tự đặc biệt",
         ),
       confirmPassword: Yup.string()
         .required("Bắt buộc")
@@ -55,10 +57,13 @@ const SignupForm = () => {
           const avatarData = new FormData();
           avatarData.append("avatar", avatar);
 
-          const avatarResponse = await fetch("https://ie402-backend.onrender.com/upload-avatar", {
-            method: "POST",
-            body: avatarData,
-          });
+          const avatarResponse = await fetch(
+            "https://ie402-backend.onrender.com/upload-avatar",
+            {
+              method: "POST",
+              body: avatarData,
+            },
+          );
           const avatarResult = await avatarResponse.json();
 
           if (avatarResult.avatarUrl) {
@@ -110,11 +115,15 @@ const SignupForm = () => {
 
   return (
     <div className="form-container">
-      <form className="infoform" onSubmit={formik.handleSubmit} encType="multipart/form-data">
-        <h1 className="text-xl font-bold text-center mb-4">Đăng ký</h1>
+      <form
+        className="infoform"
+        onSubmit={formik.handleSubmit}
+        encType="multipart/form-data"
+      >
+        <h1 className="mb-4 text-center text-xl font-bold">Đăng ký</h1>
 
-        <div className="flex space-x-4 mb-4">
-        <div className="w-1/2">
+        <div className="mb-4 flex space-x-4">
+          <div className="w-1/2">
             <label>Họ và tên đệm</label>
             <input
               type="text"
@@ -124,7 +133,9 @@ const SignupForm = () => {
               placeholder="Enter your last name"
               className="input-field"
             />
-            {formik.errors.lastName && <p className="errorMsg">{formik.errors.lastName}</p>}
+            {formik.errors.lastName && (
+              <p className="errorMsg">{formik.errors.lastName}</p>
+            )}
           </div>
 
           <div className="w-1/2">
@@ -137,7 +148,9 @@ const SignupForm = () => {
               placeholder="Enter your first name"
               className="input-field"
             />
-            {formik.errors.firstName && <p className="errorMsg">{formik.errors.firstName}</p>}
+            {formik.errors.firstName && (
+              <p className="errorMsg">{formik.errors.firstName}</p>
+            )}
           </div>
         </div>
 
@@ -149,9 +162,11 @@ const SignupForm = () => {
           onChange={formik.handleChange}
           placeholder="Enter your email"
         />
-        {formik.errors.email && <p className="errorMsg">{formik.errors.email}</p>}
+        {formik.errors.email && (
+          <p className="errorMsg">{formik.errors.email}</p>
+        )}
 
-        <div className="flex space-x-4 mb-4">
+        <div className="mb-4 flex space-x-4">
           <div className="w-1/2">
             <label>Số điện thoại</label>
             <input
@@ -162,7 +177,9 @@ const SignupForm = () => {
               placeholder="Enter your phone number"
               className="input-field"
             />
-            {formik.errors.sdt && <p className="errorMsg">{formik.errors.sdt}</p>}
+            {formik.errors.sdt && (
+              <p className="errorMsg">{formik.errors.sdt}</p>
+            )}
           </div>
           <div className="w-1/2">
             <label>Ngày sinh</label>
@@ -173,7 +190,9 @@ const SignupForm = () => {
               onChange={formik.handleChange}
               className="input-field"
             />
-            {formik.errors.birthdate && <p className="errorMsg">{formik.errors.birthdate}</p>}
+            {formik.errors.birthdate && (
+              <p className="errorMsg">{formik.errors.birthdate}</p>
+            )}
           </div>
         </div>
 
@@ -187,10 +206,12 @@ const SignupForm = () => {
             placeholder="Enter your address"
             className="input-field"
           />
-          {formik.errors.address && <p className="errorMsg">{formik.errors.address}</p>}
+          {formik.errors.address && (
+            <p className="errorMsg">{formik.errors.address}</p>
+          )}
         </div>
 
-        <div className="flex space-x-4 mb-4">
+        <div className="mb-4 flex space-x-4">
           <div className="w-1/2">
             <label>Mật khẩu</label>
             <input
@@ -201,7 +222,9 @@ const SignupForm = () => {
               placeholder="Enter your password"
               className="input-field"
             />
-            {formik.errors.password && <p className="errorMsg">{formik.errors.password}</p>}
+            {formik.errors.password && (
+              <p className="errorMsg">{formik.errors.password}</p>
+            )}
           </div>
           <div className="w-1/2">
             <label>Xác nhận mật khẩu</label>
@@ -213,7 +236,9 @@ const SignupForm = () => {
               placeholder="Confirm your password"
               className="input-field"
             />
-            {formik.errors.confirmPassword && <p className="errorMsg">{formik.errors.confirmPassword}</p>}
+            {formik.errors.confirmPassword && (
+              <p className="errorMsg">{formik.errors.confirmPassword}</p>
+            )}
           </div>
         </div>
 

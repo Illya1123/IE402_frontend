@@ -31,7 +31,7 @@ const AdminRouteList = ({ onEdit, onDelete }) => {
       route.startLatitude.includes(search) ||
       route.startLongitude.includes(search) ||
       route.endLatitude.includes(search) ||
-      route.endLongitude.includes(search)
+      route.endLongitude.includes(search),
   );
 
   return (
@@ -41,34 +41,36 @@ const AdminRouteList = ({ onEdit, onDelete }) => {
         placeholder="Tìm kiếm..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        className="border p-2 mb-4 w-full rounded-md"
+        className="mb-4 w-full rounded-md border p-2"
       />
-      <div className="max-h-80 overflow-y-auto rounded-lg shadow-md border border-gray-300">
-        <table className="min-w-full table-auto bg-white rounded-lg shadow-md">
+      <div className="max-h-80 overflow-y-auto rounded-lg border border-gray-300 shadow-md">
+        <table className="min-w-full table-auto rounded-lg bg-white shadow-md">
           <thead>
             <tr className="bg-gray-200">
-              <th className="py-3 px-4 text-left">Tên Tuyến Đường</th>
-              <th className="py-3 px-4 text-left">Mô Tả</th>
-              <th className="py-3 px-4 text-center">Chiều Dài (km)</th>
-              <th className="py-3 px-4 text-center">Hành Động</th>
+              <th className="px-4 py-3 text-left">Tên Tuyến Đường</th>
+              <th className="px-4 py-3 text-left">Mô Tả</th>
+              <th className="px-4 py-3 text-center">Chiều Dài (km)</th>
+              <th className="px-4 py-3 text-center">Hành Động</th>
             </tr>
           </thead>
           <tbody>
             {filteredRoutes.map((route) => (
               <tr key={route.id} className="border-b">
-                <td className="py-3 px-4">{route.name}</td>
-                <td className="py-3 px-4">{route.description}</td>
-                <td className="py-3 px-4 text-center">{parseFloat(route.length).toFixed(1)}</td>
-                <td className="py-3 px-4 text-center">
+                <td className="px-4 py-3">{route.name}</td>
+                <td className="px-4 py-3">{route.description}</td>
+                <td className="px-4 py-3 text-center">
+                  {parseFloat(route.length).toFixed(1)}
+                </td>
+                <td className="px-4 py-3 text-center">
                   <button
                     onClick={() => onEdit(route)}
-                    className="bg-yellow-500 text-white px-4 py-2 rounded-md"
+                    className="rounded-md bg-yellow-500 px-4 py-2 text-white"
                   >
                     Cập Nhật
                   </button>
                   <button
                     onClick={() => onDelete(route.id)}
-                    className="bg-red-500 text-white px-4 py-2 rounded-md ml-2"
+                    className="ml-2 rounded-md bg-red-500 px-4 py-2 text-white"
                   >
                     Xóa
                   </button>
